@@ -7,4 +7,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="black-and-white-car-illustration-for-conceptual-design-free-vector.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="black-and-white-car-illustration-for-conceptual-design-free-vector.jpg" />
+  </ItemGroup>
+
 </Project>

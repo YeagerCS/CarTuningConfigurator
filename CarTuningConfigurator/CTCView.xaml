@@ -5,10 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarTuningConfigurator"
         mc:Ignorable="d"
-        Title="Car Tuning Configurator" Height="450" Width="800">
+        Title="Car Tuning Configurator" Height="470" Width="930">
     <Grid>
         <ListBox HorizontalAlignment="Left" Height="257" Margin="35,74,0,0" VerticalAlignment="Top" Width="183" FontSize="18" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Height="35" Margin="662,389,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Height="35" Margin="762,389,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
+        <Image HorizontalAlignment="Left" Height="243" Margin="361,94,0,0" VerticalAlignment="Top" Width="384" Source="/black-and-white-car-illustration-for-conceptual-design-free-vector.jpg"/>
+
+        <Button Content="Rims" HorizontalAlignment="Center" Height="35" Margin="0,232,0,0" VerticalAlignment="Top" Width="102"/>
+        <Button Content="Engine" HorizontalAlignment="Left" Height="35" Margin="570,280,0,0" VerticalAlignment="Top" Width="108"/>
+        <Button Content="Tyres" HorizontalAlignment="Left" Height="35" Margin="255,152,0,0" VerticalAlignment="Top" Width="106"/>
+        <Button Content="Exhaust" HorizontalAlignment="Left" Height="35" Margin="273,94,0,0" VerticalAlignment="Top" Width="96"/>
+        <Button Content="Spoiler" HorizontalAlignment="Center" Height="35" Margin="0,54,0,0" VerticalAlignment="Top" Width="116"/>
+        <Button Content="Nitro" HorizontalAlignment="Left" Height="34" Margin="739,250,0,0" VerticalAlignment="Top" Width="108"/>
+        <Button Content="Breaks" HorizontalAlignment="Left" Height="35" Margin="750,145,0,0" VerticalAlignment="Top" Width="98"/>
+        <Label Content="Stats" HorizontalAlignment="Left" Height="36" Margin="35,38,0,0" VerticalAlignment="Top" Width="183" HorizontalContentAlignment="Center" BorderBrush="Gray" BorderThickness="1" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Price: " HorizontalAlignment="Left" Height="43" Margin="762,341,0,0" VerticalAlignment="Top" Width="135" FontSize="22" Foreground="#666666"/>
 
     </Grid>
 </Window>
