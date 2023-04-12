@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Button" HorizontalAlignment="Left" Margin="224,154,0,0" VerticalAlignment="Top"/>
+        <ListBox HorizontalAlignment="Left" Height="207" Margin="334,83,0,0" VerticalAlignment="Top" Width="178" d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
     </Grid>
 </Window>
