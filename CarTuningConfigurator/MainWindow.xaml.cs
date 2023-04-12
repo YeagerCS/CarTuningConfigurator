@@ -23,6 +23,9 @@ namespace CarTuningConfigurator
         public MainWindow()
         {
             InitializeComponent();
+            CTCView window = new CTCView();
+            window.Show();
+            this.Close();
         }
     }
 }
