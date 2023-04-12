@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarTuningConfigurator"
         mc:Ignorable="d"
-        Title="CTCView" Height="450" Width="800">
+        Title="Car Tuning Configurator" Height="450" Width="800">
     <Grid>
-        
+        <ListBox HorizontalAlignment="Left" Height="257" Margin="35,74,0,0" VerticalAlignment="Top" Width="183" FontSize="18" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Height="35" Margin="662,389,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
+
     </Grid>
 </Window>
