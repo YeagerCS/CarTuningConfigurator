@@ -23,9 +23,19 @@ namespace CarTuningConfigurator
         public MainWindow()
         {
             InitializeComponent();
-            Uri uri = new Uri("black-and-white-car-illustration-for-conceptual-design-free-vector.jpg", UriKind.Relative);
+            Uri uri = new Uri("car1.jpg", UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);
             selectedCarImage.Source = imageBItmap;
+        }
+
+        private void triangleRight_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Esse");
+        }
+
+        private void triangleLeft_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
