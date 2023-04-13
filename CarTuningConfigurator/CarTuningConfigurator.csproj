@@ -8,13 +8,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.0.32.1" />
-    <PackageReference Include="MySqlConnector" Version="2.2.5" />
-    <None Remove="car1.jpg" />
+    <Compile Remove="TuningView.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="car1.jpg" />
+    <PackageReference Include="MySql.Data" Version="8.0.32.1" />
+    <PackageReference Include="MySqlConnector" Version="2.2.5" />
+    <None Remove="car1.jpg" />
+    <None Remove="car2.jpg" />
+    <None Remove="car3.jpg" />
+    <None Remove="car4.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="car1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="car2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="car3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="car4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TuningView.xaml.cs" />
   </ItemGroup>
 
 </Project>

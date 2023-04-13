@@ -20,13 +20,22 @@ namespace CarTuningConfigurator
     /// </summary>
     public partial class MainWindow : Window
     {
-        string[] files = { "car1.jpg", "car2.jpg", "car3.jpg", "car4.jpg" };
+        CTCModel model = new CTCModel();
+
         int index = 0;
 
         public MainWindow()
         {
             InitializeComponent();
             updateImage();
+            
+        }
+
+        private void updateImage()
+        {
+            Uri uri = new Uri(model.Cars[index].Image, UriKind.Relative);
+            BitmapImage imageBItmap = new BitmapImage(uri);
+            selectedCarImage.Source = imageBItmap;
 
             if (index == 0)
             {
@@ -34,27 +43,39 @@ namespace CarTuningConfigurator
             }
             else
             {
-                triangleLeft.Visibility= Visibility.Visible;
+                triangleLeft.Visibility = Visibility.Visible;
             }
-        }
 
-        private void updateImage()
-        {
-            Uri uri = new Uri(files[index], UriKind.Relative);
-            BitmapImage imageBItmap = new BitmapImage(uri);
-            selectedCarImage.Source = imageBItmap;
+            if (index == model.Cars.Count - 1)
+            {
+                triangleRight.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                triangleRight.Visibility = Visibility.Visible;
+            }
+
+            lblBrandModel.Content = model.Cars[index].Brand + " " + model.Cars[index].Model;
+            lblPrice.Content = $"{model.Cars[index].Price}$";
         }
 
         private void triangleRight_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            index++;
-            updateImage();
+            if(index < model.Cars.Count - 1)
+            {
+                index++;
+                updateImage();
+            }
         }
 
         private void triangleLeft_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            index--;
-            updateImage();
+            if(index > 0)
+            {
+                index--;
+                updateImage();
+            }
+            
         }
     }
 }

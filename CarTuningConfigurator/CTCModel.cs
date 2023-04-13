@@ -37,8 +37,40 @@ namespace CarTuningConfigurator
             Cars = new List<Car>();
             CarStats = new List<int>();
             TuningItems = new List<List<TuningItem>>();
-
             conn = new DBConn().GetDefaultConnection();
+
+            ReadDatabase();
+
+        }
+
+        public void ReadDatabase()
+        {
+            string query = "SELECT * FROM defaultcar";
+            using(MySqlCommand command = new MySqlCommand(query, conn))
+
+            using(MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Car car = new Car(
+                        id: reader.GetInt32("id"),
+                        topSpeed: reader.GetInt32("topSpeed"),
+                        breakingForce: reader.GetInt32("breakingForce"),
+                        acceleration: reader.GetInt32("acceleration"),
+                        nitroPower: reader.GetInt32("nitro"),
+                        hp: reader.GetInt32("hp"),
+                        brand: reader.GetString("brand"),
+                        model: reader.GetString("model"),
+                        color: reader.GetString("color"),
+                        tintedWindows: reader.GetBoolean("tintedWindows"),
+                        weight: reader.GetDouble("weight"),
+                        image: reader.GetString("path"),
+                        price: reader.GetDouble("price")
+                    );
+
+                    AddCar(car);
+                }
+            }
         }
 
         public CTCModel(List<Rims> rims, List<Spoiler> spoilers, List<Nitro> nitros, List<Engine> engines, List<Break> breaks, List<Exhaust> exhaust, List<Tyres> tyres, List<Car> cars, List<int> carStats, List<List<TuningItem>> tuningItems, MySqlConnection conn)
