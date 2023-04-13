@@ -11,7 +11,7 @@ namespace CarTuningConfigurator
     {
         public MySqlConnection GetDefaultConnection()
         {
-            string connectionString = $"server=localhost;user id=root;password=CasparBlond1200?;database=ctc;";
+            string connectionString = $"server=10.195.252.88;user id=root;password=CasparBlond1200?;database=ctc;";
             MySqlConnection conn = null;
             try
             {

@@ -36,7 +36,7 @@ namespace CarTuningConfigurator
             Uri uri = new Uri(model.Cars[index].Image, UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);
             selectedCarImage.Source = imageBItmap;
-
+                
             if (index == 0)
             {
                 triangleLeft.Visibility = Visibility.Hidden;
