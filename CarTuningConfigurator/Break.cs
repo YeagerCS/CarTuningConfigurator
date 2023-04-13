@@ -14,5 +14,14 @@ namespace CarTuningConfigurator
         {
             ImpactBreakingForce = impactBreakingForce;
         }
+
+        public Break(int id, string name, int level, double price, int impactBreakingForce)
+        {
+            Id = id;
+            Name = name;
+            Level = level;
+            Price = price;
+            ImpactBreakingForce = impactBreakingForce;
+        }
     }
 }

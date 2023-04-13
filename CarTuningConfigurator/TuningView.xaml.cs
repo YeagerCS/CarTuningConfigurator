@@ -24,14 +24,11 @@ namespace CarTuningConfigurator
             InitializeComponent();
         }
 
-        public TuningView(TuningItem item)
+        public TuningView(string item)
         {
             InitializeComponent();
 
-            if(item.GetType() == typeof(Spoiler))
-            {
-                lblTitle.Content = "Spoilers";
-            }
+            lblTitle.Content = item;
         }
     }
 }
