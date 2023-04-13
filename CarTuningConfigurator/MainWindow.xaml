@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Garage" Height="350" Width="600">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="172" Margin="110,76,0,0" VerticalAlignment="Top" Width="349"/>
+        <Image HorizontalAlignment="Left" Height="172" Margin="110,76,0,0" VerticalAlignment="Top" Width="349" x:Name="selectedCarImage"/>
 
     </Grid>
 </Window>

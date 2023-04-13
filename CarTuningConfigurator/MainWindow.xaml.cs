@@ -23,9 +23,9 @@ namespace CarTuningConfigurator
         public MainWindow()
         {
             InitializeComponent();
-            CTCView window = new CTCView();
-            window.Show();
-            this.Close();
+            Uri uri = new Uri("black-and-white-car-illustration-for-conceptual-design-free-vector.jpg", UriKind.Relative);
+            BitmapImage imageBItmap = new BitmapImage(uri);
+            selectedCarImage.Source = imageBItmap;
         }
     }
 }
