@@ -20,22 +20,41 @@ namespace CarTuningConfigurator
     /// </summary>
     public partial class MainWindow : Window
     {
+        string[] files = { "car1.jpg", "car2.jpg", "car3.jpg", "car4.jpg" };
+        int index = 0;
+
         public MainWindow()
         {
             InitializeComponent();
-            Uri uri = new Uri("car1.jpg", UriKind.Relative);
+            updateImage();
+
+            if (index == 0)
+            {
+                triangleLeft.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                triangleLeft.Visibility= Visibility.Visible;
+            }
+        }
+
+        private void updateImage()
+        {
+            Uri uri = new Uri(files[index], UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);
             selectedCarImage.Source = imageBItmap;
         }
 
         private void triangleRight_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Esse");
+            index++;
+            updateImage();
         }
 
         private void triangleLeft_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            index--;
+            updateImage();
         }
     }
 }
