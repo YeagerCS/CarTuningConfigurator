@@ -17,5 +17,16 @@ namespace CarTuningConfigurator
             this.Color = Color;
         }
 
+        public Rims(int id, string name, int level, double price, string type, string color) 
+        {
+            Id = id;
+            Name = name;
+            Level = level;
+            Price = price;
+            Type = type;
+            Color = color;
+        }
+
+
     }
 }

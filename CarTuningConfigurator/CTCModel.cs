@@ -73,6 +73,7 @@ namespace CarTuningConfigurator
                 }
             }
 
+            //Break
             string query2 = "SELECT * FROM break";
             using(MySqlCommand command = new MySqlCommand(query2, conn))
 
@@ -89,6 +90,27 @@ namespace CarTuningConfigurator
                     );
 
                     AddBreak(@break);
+                }
+            }
+
+            //Rims
+            string query3 = "SELECT * FROM rims";
+            using (MySqlCommand command = new MySqlCommand(query3, conn))
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Rims @rim = new Rims(
+                          id: reader.GetInt32("id"),
+                          name: reader.GetString("name"),
+                          level: reader.GetInt32("level"),
+                          price: reader.GetDouble("price"),
+                          type: reader.GetString("type"),
+                          color: reader.GetString("color")
+                    );
+
+                    AddRims(@rim);
                 }
             }
         }
