@@ -8,9 +8,11 @@ namespace CarTuningConfigurator
 {
     public class TuningItem
     {
-        public int Id {  get; set; }
-        public int Name {  get; set; }
-        public int Level {  get; set; }
-        public int Price {  get; set; }
+        protected int Id {  get; set; }
+        protected string? Name {  get; set; }
+        protected int Level {  get; set; }
+        protected double Price {  get; set; }
+
+
     }
 }

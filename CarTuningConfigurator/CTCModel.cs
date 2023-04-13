@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
@@ -69,6 +70,25 @@ namespace CarTuningConfigurator
                     );
 
                     AddCar(car);
+                }
+            }
+
+            string query2 = "SELECT * FROM break";
+            using(MySqlCommand command = new MySqlCommand(query2, conn))
+
+            using(MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Break @break = new Break(
+                          id: reader.GetInt32("id"),
+                          name: reader.GetString("name"),
+                          level: reader.GetInt32("level"),
+                          price: reader.GetDouble("price"),
+                          impactBreakingForce: reader.GetInt32("ImpactBreakingForce")
+                    );
+
+                    AddBreak(@break);
                 }
             }
         }

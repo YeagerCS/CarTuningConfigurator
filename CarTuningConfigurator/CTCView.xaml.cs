@@ -50,40 +50,51 @@ namespace CarTuningConfigurator
         
         private void btnSpoiler_Click(object sender, RoutedEventArgs e)
         {
-            window = new TuningView();
+            window = new TuningView("Spoilers");
 
             window.Show();
         }
 
         private void btnExhaust_Click(object sender, RoutedEventArgs e)
         {
+            window = new TuningView("Exhausts");
 
+            window.Show();
         }
 
         private void btnTyres_Click(object sender, RoutedEventArgs e)
         {
+            window = new TuningView("Tyres");
 
+            window.Show();
         }
 
         private void btnRims_Click(object sender, RoutedEventArgs e)
         {
+            window = new TuningView("Rims");
 
+            window.Show();
         }
 
         private void btnEngine_Click(object sender, RoutedEventArgs e)
         {
+            window = new TuningView("Engines");
 
+            window.Show();
         }
 
         private void btnNitro_Click(object sender, RoutedEventArgs e)
         {
+            window = new TuningView("Nitro");
 
+            window.Show();
         }
 
         private void btnBreaks_Click(object sender, RoutedEventArgs e)
         {
+            window = new TuningView("Breaks");
 
-
+            window.Show();
         }
     }
 }
