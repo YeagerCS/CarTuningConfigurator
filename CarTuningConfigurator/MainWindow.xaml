@@ -7,7 +7,13 @@
         mc:Ignorable="d"
         Title="Garage" Height="350" Width="600">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="172" Margin="110,76,0,0" VerticalAlignment="Top" Width="349" x:Name="selectedCarImage"/>
+        <Image HorizontalAlignment="Left" Height="172" Margin="132,77,0,0" VerticalAlignment="Top" Width="349" x:Name="selectedCarImage"/>
+        <Polygon Points="0,0 60,40, 0,80" Stroke="Black" Fill="Black" Margin="527,119,10,132" x:Name="triangleRight" />
+        <Polygon Points="60,0 0,40, 60,80" Stroke="Black" Fill="Black" Margin="10,120,517,128" x:Name="triangleLeft"/>
+
+        <Label Content="Price: " HorizontalAlignment="Left" Height="28" Margin="240,256,0,0" VerticalAlignment="Top" Width="60" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblPrice"/>
+        <Label Content="Ferrari La Ferrari " HorizontalAlignment="Center" Height="28" Margin="0,40,0,0" VerticalAlignment="Top" Width="156" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblBrandModel"/>
+
 
     </Grid>
 </Window>
