@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="TuningView.xaml.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.32.1" />
     <PackageReference Include="MySqlConnector" Version="2.2.5" />
     <None Remove="car1.jpg" />
@@ -33,7 +29,6 @@
     <Content Include="car4.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TuningView.xaml.cs" />
   </ItemGroup>
 
 </Project>
