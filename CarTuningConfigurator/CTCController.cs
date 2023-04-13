@@ -14,7 +14,8 @@ namespace CarTuningConfigurator
         {
             model = new CTCModel();
         }
-        //Create
+
+        //Add
         public void AddRims(Rims rims)
         {
             model.AddRims(rims);
