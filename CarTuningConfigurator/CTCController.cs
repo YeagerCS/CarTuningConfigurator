@@ -14,7 +14,7 @@ namespace CarTuningConfigurator
         {
             model = new CTCModel();
         }
-
+        //Create
         public void AddRims(Rims rims)
         {
             model.AddRims(rims);
@@ -60,7 +60,7 @@ namespace CarTuningConfigurator
             model.AddTuningItems(tuningItems);
         }
 
-        //----------------------------------------------------------------------
+        //Delete
 
         public void RemoveRims(int index)
         {
@@ -107,7 +107,7 @@ namespace CarTuningConfigurator
             model.RemoveTuningItems(index);
         }
 
-        //----------------------------------------------------------------------
+        //Update
 
         public void UpdateRims(int index, Rims rims)
         {
