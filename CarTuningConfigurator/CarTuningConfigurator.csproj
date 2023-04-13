@@ -10,11 +10,11 @@
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.32.1" />
     <PackageReference Include="MySqlConnector" Version="2.2.5" />
-    <None Remove="black-and-white-car-illustration-for-conceptual-design-free-vector.jpg" />
+    <None Remove="car1.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="black-and-white-car-illustration-for-conceptual-design-free-vector.jpg" />
+    <Resource Include="car1.jpg" />
   </ItemGroup>
 
 </Project>
