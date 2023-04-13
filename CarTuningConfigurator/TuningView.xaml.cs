@@ -23,5 +23,15 @@ namespace CarTuningConfigurator
         {
             InitializeComponent();
         }
+
+        public TuningView(TuningItem item)
+        {
+            InitializeComponent();
+
+            if(item.GetType() == typeof(Spoiler))
+            {
+                lblTitle.Content = "Spoilers";
+            }
+        }
     }
 }
