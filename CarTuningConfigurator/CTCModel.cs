@@ -190,7 +190,7 @@ namespace CarTuningConfigurator
             Exhausts.Insert(index, exhaust);
         }
 
-        public void UpdateTuningItems(int index, List<TuningItem> tuningItems§)
+        public void UpdateTuningItems(int index, List<TuningItem> tuningItems)
         {
             TuningItems.Insert(index, tuningItems);
         }

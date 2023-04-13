@@ -150,7 +150,7 @@ namespace CarTuningConfigurator
             model.UpdateExhaust(index, exhaust);
         }
 
-        public void UpdateTuningItems(int index, List<TuningItem> tuningItems§)
+        public void UpdateTuningItems(int index, List<TuningItem> tuningItems)
         {
             model.UpdateTuningItems(index, tuningItems);
         }
