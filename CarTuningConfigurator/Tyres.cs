@@ -18,5 +18,16 @@ namespace CarTuningConfigurator
             ImpactBreakingForce = impactBreakingForce;
             ImpactAcceleration = impactAcceleration;
         }
+
+        public Tyres(int id, string name, int level, double price, string type, int impactBreakingForce, int impactAcceleration) 
+        {
+            Id = id;
+            Name = name;
+            Level = level;
+            Price = price;
+            Type = type;
+            ImpactBreakingForce = impactBreakingForce;
+            ImpactAcceleration = impactAcceleration;
+        }
     }
 }
