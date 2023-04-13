@@ -9,7 +9,7 @@
     <Grid>
         <ListBox HorizontalAlignment="Left" Height="175" Margin="23,116,0,0" VerticalAlignment="Top" Width="183" FontSize="18" d:ItemsSource="{d:SampleData ItemCount=5}"/>
         <Label Content="Stats" HorizontalAlignment="Left" Height="36" Margin="23,80,0,0" VerticalAlignment="Top" Width="183" HorizontalContentAlignment="Center" BorderBrush="Gray" BorderThickness="1" FontWeight="Bold" FontSize="18"/>
-        <Label Content="Specs" HorizontalAlignment="Left" Height="43" Margin="23,25,0,0" VerticalAlignment="Top" Width="135" FontSize="24" Foreground="#666666"/>
+        <Label Content="Specs" HorizontalAlignment="Left" Height="43" Margin="23,25,0,0" VerticalAlignment="Top" Width="135" FontSize="24" Foreground="#666666" x:Name="lblTitle"/>
         <Button Content="Submit" HorizontalAlignment="Left" Height="35" Margin="390,299,0,0" VerticalAlignment="Top" Width="157"/>
         <Label Content="Price:" HorizontalAlignment="Left" Height="30" Margin="390,261,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666"/>
         <Label Content="HP:" HorizontalAlignment="Left" Height="30" Margin="390,231,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666"/>

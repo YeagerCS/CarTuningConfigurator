@@ -19,6 +19,8 @@ namespace CarTuningConfigurator
     /// </summary>
     public partial class CTCView : Window
     {
+
+        TuningView window;
         public CTCView()
         {
             InitializeComponent();
@@ -26,6 +28,43 @@ namespace CarTuningConfigurator
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSpoiler_Click(object sender, RoutedEventArgs e)
+        {
+            window = new TuningView();
+
+            window.Show();
+        }
+
+        private void btnExhaust_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnTyres_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnRims_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEngine_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNitro_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBreaks_Click(object sender, RoutedEventArgs e)
         {
 
         }

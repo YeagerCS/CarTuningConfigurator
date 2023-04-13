@@ -11,13 +11,13 @@
         <Button Content="Submit" HorizontalAlignment="Left" Height="35" Margin="762,389,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
         <Image HorizontalAlignment="Left" Height="243" Margin="361,94,0,0" VerticalAlignment="Top" Width="384" Source="/car1.jpg"/>
 
-        <Button Content="Rims" HorizontalAlignment="Center" Height="35" Margin="0,232,0,0" VerticalAlignment="Top" Width="102"/>
-        <Button Content="Engine" HorizontalAlignment="Left" Height="35" Margin="570,280,0,0" VerticalAlignment="Top" Width="108"/>
-        <Button Content="Tyres" HorizontalAlignment="Left" Height="35" Margin="255,152,0,0" VerticalAlignment="Top" Width="106"/>
-        <Button Content="Exhaust" HorizontalAlignment="Left" Height="35" Margin="273,94,0,0" VerticalAlignment="Top" Width="96"/>
-        <Button Content="Spoiler" HorizontalAlignment="Center" Height="35" Margin="0,54,0,0" VerticalAlignment="Top" Width="116"/>
-        <Button Content="Nitro" HorizontalAlignment="Left" Height="34" Margin="739,250,0,0" VerticalAlignment="Top" Width="108"/>
-        <Button Content="Breaks" HorizontalAlignment="Left" Height="35" Margin="750,145,0,0" VerticalAlignment="Top" Width="98"/>
+        <Button Content="Rims" HorizontalAlignment="Center" Height="35" Margin="0,232,0,0" VerticalAlignment="Top" Width="102" x:Name="btnRims" Click="btnRims_Click"/>
+        <Button Content="Engine" HorizontalAlignment="Left" Height="35" Margin="570,280,0,0" VerticalAlignment="Top" Width="108" x:Name="btnEngine" Click="btnEngine_Click"/>
+        <Button Content="Tyres" HorizontalAlignment="Left" Height="35" Margin="255,152,0,0" VerticalAlignment="Top" Width="106" x:Name="btnTyres" Click="btnTyres_Click"/>
+        <Button Content="Exhaust" HorizontalAlignment="Left" Height="35" Margin="273,94,0,0" VerticalAlignment="Top" Width="96" x:Name="btnExhaust" Click="btnExhaust_Click"/>
+        <Button Content="Spoiler" HorizontalAlignment="Center" Height="35" Margin="0,54,0,0" VerticalAlignment="Top" Width="116" x:Name="btnSpoiler" Click="btnSpoiler_Click"/>
+        <Button Content="Nitro" HorizontalAlignment="Left" Height="34" Margin="739,250,0,0" VerticalAlignment="Top" Width="108" x:Name="btnNitro" Click="btnNitro_Click"/>
+        <Button Content="Breaks" HorizontalAlignment="Left" Height="35" Margin="750,145,0,0" VerticalAlignment="Top" Width="98" x:Name="btnBreaks" Click="btnBreaks_Click"/>
         <Label Content="Stats" HorizontalAlignment="Left" Height="36" Margin="35,38,0,0" VerticalAlignment="Top" Width="183" HorizontalContentAlignment="Center" BorderBrush="Gray" BorderThickness="1" FontWeight="Bold" FontSize="18"/>
         <Label Content="Price: " HorizontalAlignment="Left" Height="43" Margin="762,341,0,0" VerticalAlignment="Top" Width="135" FontSize="22" Foreground="#666666"/>
 
