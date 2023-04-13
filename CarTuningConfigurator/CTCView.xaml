@@ -9,7 +9,7 @@
     <Grid>
         <ListBox HorizontalAlignment="Left" Height="257" Margin="35,74,0,0" VerticalAlignment="Top" Width="183" FontSize="18" d:ItemsSource="{d:SampleData ItemCount=5}"/>
         <Button Content="Submit" HorizontalAlignment="Left" Height="35" Margin="762,389,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
-        <Image HorizontalAlignment="Left" Height="243" Margin="361,94,0,0" VerticalAlignment="Top" Width="384" Source="/car1.jpg"/>
+        <Image HorizontalAlignment="Left" Height="243" Margin="361,94,0,0" VerticalAlignment="Top" Width="384" Source="/car1.jpg" x:Name="selectedCarImage"/>
 
         <Button Content="Rims" HorizontalAlignment="Center" Height="35" Margin="0,232,0,0" VerticalAlignment="Top" Width="102" x:Name="btnRims" Click="btnRims_Click"/>
         <Button Content="Engine" HorizontalAlignment="Left" Height="35" Margin="570,280,0,0" VerticalAlignment="Top" Width="108" x:Name="btnEngine" Click="btnEngine_Click"/>

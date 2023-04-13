@@ -77,5 +77,12 @@ namespace CarTuningConfigurator
             }
             
         }
+
+        private void selectedCarImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            CTCView window = new CTCView(model.Cars[index].Image);
+            window.Show();
+            this.Close();
+        }
     }
 }
