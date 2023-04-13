@@ -8,11 +8,24 @@ namespace CarTuningConfigurator
 {
     public class TuningItem
     {
-        protected int Id {  get; set; }
-        protected string? Name {  get; set; }
-        protected int Level {  get; set; }
-        protected double Price {  get; set; }
+        public int Id {  get; set; }
+        public string? Name {  get; set; }
+        public int Level {  get; set; }
+        public double Price {  get; set; }
 
+        public TuningItem(int id, string? name, int level, double price)
+        {
+            Id = id;
+            Name = name;
+            Level = level;
+            Price = price;
+        }
 
+        public TuningItem() { }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

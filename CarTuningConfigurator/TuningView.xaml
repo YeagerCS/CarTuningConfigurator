@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Title="TuningView" Height="380" Width="600">
     <Grid>
-        <ListBox HorizontalAlignment="Left" Height="175" Margin="23,116,0,0" VerticalAlignment="Top" Width="183" FontSize="18" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="lbxSpecs"/>
+        <ListBox HorizontalAlignment="Left" Height="175" Margin="23,116,0,0" VerticalAlignment="Top" Width="183" FontSize="18" x:Name="lbxSpecs" SelectionChanged="lbxSpecs_SelectionChanged"/>
         <Label Content="Stats" HorizontalAlignment="Left" Height="36" Margin="23,80,0,0" VerticalAlignment="Top" Width="183" HorizontalContentAlignment="Center" BorderBrush="Gray" BorderThickness="1" FontWeight="Bold" FontSize="18"/>
         <Label Content="Specs" HorizontalAlignment="Left" Height="43" Margin="23,25,0,0" VerticalAlignment="Top" Width="135" FontSize="24" Foreground="#666666" x:Name="lblTitle"/>
         <Button Content="Submit" HorizontalAlignment="Left" Height="35" Margin="390,299,0,0" VerticalAlignment="Top" Width="157"/>
-        <Label Content="Price:" HorizontalAlignment="Left" Height="30" Margin="390,261,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666"/>
-        <Label Content="HP:" HorizontalAlignment="Left" Height="30" Margin="390,231,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666"/>
-        <Label Content="Nitro:" HorizontalAlignment="Left" Height="30" Margin="390,201,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666"/>
-        <Label Content="Acceleration:" HorizontalAlignment="Left" Height="30" Margin="390,171,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666"/>
-        <Label Content="Breaking force:" HorizontalAlignment="Left" Height="36" Margin="390,141,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666"/>
-        <Label Content="Topspeed:" HorizontalAlignment="Left" Height="39" Margin="390,111,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" RenderTransformOrigin="0.522,0.101"/>
+        <Label Content="Price: " HorizontalAlignment="Left" Height="30" Margin="390,261,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblPrice"/>
+        <Label Content="HP: " HorizontalAlignment="Left" Height="30" Margin="390,231,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblHp"/>
+        <Label Content="Nitro: " HorizontalAlignment="Left" Height="30" Margin="390,201,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblNitro"/>
+        <Label Content="Acceleration: " HorizontalAlignment="Left" Height="30" Margin="390,171,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblAcceleration"/>
+        <Label Content="Breaking force: " HorizontalAlignment="Left" Height="36" Margin="390,141,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblBreakingForce"/>
+        <Label Content="Topspeed: " HorizontalAlignment="Left" Height="39" Margin="390,111,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" RenderTransformOrigin="0.522,0.101" x:Name="lblTopSpeed"/>
 
     </Grid>
 </Window>

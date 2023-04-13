@@ -23,5 +23,10 @@ namespace CarTuningConfigurator
             Price = price;
             ImpactBreakingForce = impactBreakingForce;
         }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

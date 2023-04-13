@@ -85,7 +85,7 @@ namespace CarTuningConfigurator
 
         private void btnNitro_Click(object sender, RoutedEventArgs e)
         {
-            window = new TuningView("Nitro");
+            window = new TuningView("Nitros");
 
             window.Show();
         }
