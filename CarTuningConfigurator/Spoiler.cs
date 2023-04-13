@@ -16,5 +16,15 @@ namespace CarTuningConfigurator
             Type = type;
             ImpactVelocity = impactVelocity;
         }
+
+        public Spoiler(int id, string type, string name, int level, double price, int impactVelocity) 
+        {
+            Id = id;
+            Type = type;
+            Name = name;
+            Level = level;
+            Price = price;
+            ImpactVelocity = impactVelocity;
+        }
     }
 }

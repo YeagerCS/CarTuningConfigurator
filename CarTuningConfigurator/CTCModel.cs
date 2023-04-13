@@ -113,6 +113,116 @@ namespace CarTuningConfigurator
                     AddRims(@rim);
                 }
             }
+
+            //Tyres
+            string query4 = "SELECT * FROM tyres";
+            using (MySqlCommand command = new MySqlCommand(query4, conn))
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Tyres @tyre = new Tyres(
+                          id: reader.GetInt32("id"),
+                          name: reader.GetString("name"),
+                          level: reader.GetInt32("level"),
+                          price: reader.GetDouble("price"),
+                          type: reader.GetString("type"),
+                          impactBreakingForce: reader.GetInt32("ImpactBreakingforce"),
+                          impactAcceleration: reader.GetInt32("ImpactAcceleration")
+                    );
+
+                    AddTyres(@tyre);
+                }
+            }
+
+            //Engine
+            string query5 = "SELECT * FROM engine";
+            using (MySqlCommand command = new MySqlCommand(query5, conn))
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Engine @engine = new Engine(
+                          id: reader.GetInt32("id"),
+                          name: reader.GetString("name"),
+                          level: reader.GetInt32("level"),
+                          price: reader.GetDouble("price"),
+                          type: reader.GetString("type"),
+                          cylinder: reader.GetString("cylinder"),
+                          impactVelocity: reader.GetInt32("ImpactVelocity"),
+                          impactAcceleration: reader.GetInt32("ImpactAcceleration"),
+                          impactHorsePower: reader.GetInt32("ImpactHorsePower")
+                    );
+
+                    AddEngine(@engine);
+                }
+            }
+
+            //Spoiler
+            string query6 = "SELECT * FROM spoiler";
+            using (MySqlCommand command = new MySqlCommand(query6, conn))
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Spoiler @spoiler = new Spoiler(
+                          id: reader.GetInt32("id"),
+                          name: reader.GetString("name"),
+                          level: reader.GetInt32("level"),
+                          price: reader.GetDouble("price"),
+                          type: reader.GetString("type"),         
+                          impactVelocity: reader.GetInt32("ImpactVelocity")
+                          
+                    );
+
+                    AddSpoiler(@spoiler);
+                }
+            }
+
+            //Exhaust
+            string query7 = "SELECT * FROM exhaust";
+            using (MySqlCommand command = new MySqlCommand(query7, conn))
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Exhaust @exhaust = new Exhaust(
+                          id: reader.GetInt32("id"),
+                          name: reader.GetString("name"),
+                          level: reader.GetInt32("level"),
+                          price: reader.GetDouble("price"),
+                          impactNitro: reader.GetInt32("ImpactNitro")
+
+                    );
+
+                    AddExhaust(@exhaust);
+                }
+            }
+
+            //Nitro
+            string query8 = "SELECT * FROM nitro";
+            using (MySqlCommand command = new MySqlCommand(query8, conn))
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Nitro @nitro = new Nitro(
+                          id: reader.GetInt32("id"),
+                          name: reader.GetString("name"),
+                          level: reader.GetInt32("level"),
+                          price: reader.GetDouble("price"),
+                          impactNitro: reader.GetInt32("ImpactNitro")
+
+                    );
+
+                    AddNitro(@nitro);
+                }
+            }
         }
 
         public CTCModel(List<Rims> rims, List<Spoiler> spoilers, List<Nitro> nitros, List<Engine> engines, List<Break> breaks, List<Exhaust> exhaust, List<Tyres> tyres, List<Car> cars, List<int> carStats, List<List<TuningItem>> tuningItems, MySqlConnection conn)

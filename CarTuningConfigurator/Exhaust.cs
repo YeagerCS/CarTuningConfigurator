@@ -14,5 +14,14 @@ namespace CarTuningConfigurator
         {
             ImpactNitro = impactNitro;
         }
+
+        public Exhaust(int id, string name, int level, double price, int impactNitro) 
+        { 
+            Id = id; 
+            Name = name; 
+            Level = level; 
+            Price = price;
+            ImpactNitro = impactNitro;
+        }
     }
 }

@@ -22,5 +22,18 @@ namespace CarTuningConfigurator
             ImpactAcceleration = impactAcceleration;
             ImpactHorsePower = impactHorsePower;
         }
+
+        public Engine(int id, string name, string type, string cylinder, int level, double price, int impactVelocity, int impactAcceleration, int impactHorsePower)
+        {
+            Id = id;
+            Name = name;
+            Type = type;
+            Cylinder = cylinder;
+            Level = level;
+            Price = price;
+            ImpactVelocity = impactVelocity;
+            ImpactAcceleration = impactAcceleration;
+            ImpactHorsePower = impactHorsePower;
+        }
     }
 }
