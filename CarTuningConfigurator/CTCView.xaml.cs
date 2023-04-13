@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +29,20 @@ namespace CarTuningConfigurator
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+
+
+
+
+        public CTCView(string path)
+        {
+            InitializeComponent();
+            ResizeMode = ResizeMode.NoResize;
+
+            Uri uri = new Uri(path, UriKind.Relative);
+            BitmapImage imageBItmap = new BitmapImage(uri);
+            selectedCarImage.Source = imageBItmap;
         }
     }
 }
