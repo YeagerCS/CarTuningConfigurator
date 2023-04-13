@@ -12,7 +12,7 @@ namespace CarTuningConfigurator
         public int TopSpeed { get; set; }
         public int BreakingForce { get; set; }
         public int Acceleration { get; set; }
-        public int nitro { get; set; }
+        public int nitroPower { get; set; }
         public int Hp { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
@@ -28,13 +28,13 @@ namespace CarTuningConfigurator
         public Tyres Tyres { get; set; }
         public string Image { get; set; }
 
-        public Car(int id, int topSpeed, int breakingForce, int acceleration, int nitro, int hp, string brand, string model, string color, bool tintedWindows, double weight, Spoiler spoiler, Rims rims, Nitro nitro, Engine engine, Break @break, Exhaust exhaust, Tyres tyres, string image)
+        public Car(int id, int topSpeed, int breakingForce, int acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, double weight, Spoiler spoiler, Rims rims, Nitro Nitro, Engine engine, Break @break, Exhaust exhaust, Tyres tyres, string image)
         {
             Id = id;
             TopSpeed = topSpeed;
             BreakingForce = breakingForce;
             Acceleration = acceleration;
-            Nitro = nitro;
+            this.Nitro = Nitro;
             Hp = hp;
             Brand = brand;
             Model = model;
@@ -43,7 +43,7 @@ namespace CarTuningConfigurator
             Weight = weight;
             Spoiler = spoiler;
             Rims = rims;
-            Nitro = nitro;
+            this.nitroPower = nitroPower;
             Engine = engine;
             Break = @break;
             Exhaust = exhaust;
