@@ -167,7 +167,9 @@ namespace CarTuningConfigurator
             FillListBox(stats);
         }
 
-        
-
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show(" Topspeed in km/h\n Breaking force in Power\n Acceleration in Time for 0-100km/h\n Nitro in Power\n HP in Horsepower", "Stat Infos");
+        }
     }
 }
