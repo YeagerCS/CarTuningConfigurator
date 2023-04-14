@@ -46,6 +46,41 @@ namespace CarTuningConfigurator
         }
 
 
+        public Car GetDefaultCarModel(string brand)
+        {
+
+            List<Car> defCars = new List<Car>();
+            string query = $"SELECT * FROM defaultcar WHERE brand = '{brand}'";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Car car = new Car(
+                        id: reader.GetInt32("id"),
+                        topSpeed: reader.GetInt32("topSpeed"),
+                        breakingForce: reader.GetInt32("breakingForce"),
+                        acceleration: reader.GetInt32("acceleration"),
+                        nitroPower: reader.GetInt32("nitro"),
+                        hp: reader.GetInt32("hp"),
+                        brand: reader.GetString("brand"),
+                        model: reader.GetString("model"),
+                        color: reader.GetString("color"),
+                        tintedWindows: reader.GetBoolean("tintedWindows"),
+                        weight: reader.GetDouble("weight"),
+                        image: reader.GetString("path"),
+                        price: reader.GetDouble("price")
+                    );
+
+                    defCars.Add(car);
+                }
+            }
+
+            return defCars[0];   
+        }
+
+
 
         public void ReadDatabase()
         {

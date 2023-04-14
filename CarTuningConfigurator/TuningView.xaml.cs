@@ -70,7 +70,7 @@ namespace CarTuningConfigurator
                     List<Engine> engines = TuningItems.Cast<Engine>().ToList();
                     lblPrice.Content += engines[index].Price + "$";
                     lblAcceleration.Content += "-" + engines[index].ImpactAcceleration;
-                    lblHp.Content += "+" + engines[index].ImpactHorsePower;
+                    lblHp.Content += "" + engines[index].ImpactHorsePower;
                     lblTopSpeed.Content += "+" + engines[index].ImpactVelocity;
                     break;
                 case "Rims":
