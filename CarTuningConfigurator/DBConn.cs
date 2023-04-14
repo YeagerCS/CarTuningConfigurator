@@ -34,6 +34,7 @@ namespace CarTuningConfigurator
             modelBuilder.Entity<Tyres>().ToTable(nameof(Tyres).ToLower());
             modelBuilder.Entity<Engine>().ToTable(nameof(Engine).ToLower());
             modelBuilder.Entity<Spoiler>().ToTable(nameof(Spoiler).ToLower());
+            modelBuilder.Entity<Car>().ToTable("defaultcar");
             modelBuilder.Entity<Nitro>().ToTable(nameof(Nitro).ToLower());
             modelBuilder.Entity<Exhaust>().ToTable(nameof(Exhaust).ToLower());
         }
