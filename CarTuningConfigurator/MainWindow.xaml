@@ -18,7 +18,13 @@
                          From="1" To="0" Duration="0:0:0.4" />
 
         </Storyboard>
+        <Storyboard x:Key="windowTransition">
+            <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetProperty="Opacity"/>
+            
+        </Storyboard>
     </Window.Resources>
+
+
     <Grid>
         <Image HorizontalAlignment="Left" Height="218" Margin="162,88,0,0" VerticalAlignment="Top" Width="450" x:Name="selectedCarImage" MouseDown="selectedCarImage_MouseDown"/>
         <Polygon Points="0,0 60,40, 0,80" Stroke="Black" Fill="Black" Margin="693,158,10,131" x:Name="triangleRight" MouseDown="triangleRight_MouseDown"/>
@@ -28,7 +34,7 @@
         <Label Content="Ferrari La Ferrari " HorizontalAlignment="Left" Height="28" Margin="303,40,0,0" VerticalAlignment="Top" Width="156" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblBrandModel"/>
         <Label Content="48734$" HorizontalAlignment="Left" Height="28" Margin="381,343,0,0" VerticalAlignment="Top" Width="157" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblPrice" />
 
-        
+
 
     </Grid>
 </Window>
