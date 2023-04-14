@@ -80,7 +80,7 @@ namespace CarTuningConfigurator
 
         private void selectedCarImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CTCView window = new CTCView(model.Cars[index].Image);
+            CTCView window = new CTCView(model.Cars[index].Image, model.Cars[index]);
             window.Show();
             this.Close();
         }

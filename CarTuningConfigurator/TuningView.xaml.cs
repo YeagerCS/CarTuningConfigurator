@@ -29,7 +29,7 @@ namespace CarTuningConfigurator
             TuningItems = new List<TuningItem>();
         }
 
-        public TuningView(string item)
+        public TuningView(string item, Car car)
         {
             controller = new TuningController();
             InitializeComponent();
