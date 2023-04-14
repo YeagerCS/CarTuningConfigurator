@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Car Tuning Configurator" Height="470" Width="930">
     <Grid>
-        <ListBox HorizontalAlignment="Left" Height="257" Margin="35,74,0,0" VerticalAlignment="Top" Width="183" FontSize="18" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <ListBox HorizontalAlignment="Left" Height="257" Margin="35,74,0,0" VerticalAlignment="Top" Width="183" FontSize="18" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="lbxStats"/>
         <Button Content="Submit" HorizontalAlignment="Left" Height="35" Margin="762,389,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
         <Image HorizontalAlignment="Left" Height="243" Margin="361,94,0,0" VerticalAlignment="Top" Width="384" Source="/car1.jpg" x:Name="selectedCarImage"/>
 
@@ -20,6 +20,9 @@
         <Button Content="Breaks" HorizontalAlignment="Left" Height="35" Margin="750,145,0,0" VerticalAlignment="Top" Width="98" x:Name="btnBreaks" Click="btnBreaks_Click"/>
         <Label Content="Stats" HorizontalAlignment="Left" Height="36" Margin="35,38,0,0" VerticalAlignment="Top" Width="183" HorizontalContentAlignment="Center" BorderBrush="Gray" BorderThickness="1" FontWeight="Bold" FontSize="18"/>
         <Label Content="Price: " HorizontalAlignment="Left" Height="43" Margin="762,341,0,0" VerticalAlignment="Top" Width="135" FontSize="22" Foreground="#666666"/>
+        <Button Content="Back to Garage" HorizontalAlignment="Left" Height="35" Margin="35,389,0,0" VerticalAlignment="Top" Width="128" Click="garageButton_Click"/>
+
+        <Label Content="Ferrari La Ferrari " HorizontalAlignment="Center" Height="28" Margin="0,351,0,0" VerticalAlignment="Top" Width="156" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblBrandModel"/>
 
     </Grid>
 </Window>
