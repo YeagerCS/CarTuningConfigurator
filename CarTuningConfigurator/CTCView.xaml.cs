@@ -61,7 +61,7 @@ namespace CarTuningConfigurator
         {
             stats[0] = $"Topspeed: {carF.TopSpeed} km/h";
             stats[1] = $"Braking force: {carF.BreakingForce}";
-            stats[2] = $"Acceleration: {carF.Acceleration}s from 0 to 100km/h";
+            stats[2] = $"Acceleration: {carF.Acceleration}s";
             stats[3] = $"Nitro: {carF.nitroPower}";
             stats[4] = $"HP: {carF.Hp}";
         }
