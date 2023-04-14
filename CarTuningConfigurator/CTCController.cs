@@ -14,6 +14,94 @@ namespace CarTuningConfigurator
         {
             model = new CTCModel();
         }
+        public Car ApplyTuningItemToCar(Dictionary<string, double> impacts, TuningItem item, Car carF)
+        {
+            if (item is Spoiler)
+            {
+                carF.Spoiler = (Spoiler)item;
+            }
+            else if (item is Rims)
+            {
+                carF.Rims = (Rims)item;
+            }
+            else if (item is Nitro)
+            {
+                carF.Nitro = (Nitro)item;
+            }
+            else if (item is Engine)
+            {
+                carF.Engine = (Engine)item;
+            }
+            else if (item is Break)
+            {
+                carF.Break = (Break)item;
+            }
+            else if (item is Exhaust)
+            {
+                carF.Exhaust = (Exhaust)item;
+            }
+            else if (item is Tyres)
+            {
+                carF.Tyres = (Tyres)item;
+            }
+
+            return carF;
+        }
+
+        public object[] CalculatePriceAndStats(Car car)
+        {
+            object[] objs = new object[2];
+            Car defaultCar = GetDefaultCarModel(car.Brand);
+            double TotalPriceCalc = 0;
+            if (car.Spoiler != null)
+            {
+                car.TopSpeed = defaultCar.TopSpeed + car.Spoiler.ImpactVelocity;
+                TotalPriceCalc += car.Spoiler.Price;
+            }
+            if (car.Rims != null)
+            {
+                TotalPriceCalc += car.Rims.Price;
+            }
+            if (car.Nitro != null)
+            {
+                car.nitroPower = defaultCar.nitroPower + car.Nitro.ImpactNitro;
+                TotalPriceCalc += car.Nitro.Price;
+            }
+            if (car.Engine != null)
+            {
+                car.TopSpeed = car.Spoiler != null ? defaultCar.TopSpeed + car.Engine.ImpactVelocity + car.Spoiler.ImpactVelocity : defaultCar.TopSpeed + car.Engine.ImpactVelocity;
+                car.Acceleration = defaultCar.Acceleration - car.Engine.ImpactAcceleration;
+                car.Hp = car.Engine.ImpactHorsePower;
+                TotalPriceCalc += car.Engine.Price;
+            }
+            if (car.Break != null)
+            {
+                car.BreakingForce = defaultCar.BreakingForce + car.Break.ImpactBreakingForce;
+                TotalPriceCalc += car.Break.Price;
+            }
+            if (car.Exhaust != null)
+            {
+                car.nitroPower = car.Nitro != null ? defaultCar.nitroPower + car.Exhaust.ImpactNitro + car.Nitro.ImpactNitro : defaultCar.nitroPower + car.Exhaust.ImpactNitro;
+                TotalPriceCalc += car.Exhaust.Price;
+            }
+            if (car.Tyres != null)
+            {
+                car.BreakingForce = car.Break != null ? defaultCar.BreakingForce + car.Tyres.ImpactBreakingForce + car.Break.ImpactBreakingForce : defaultCar.BreakingForce + car.Tyres.ImpactBreakingForce;
+                car.Acceleration = car.Engine != null ? defaultCar.Acceleration - car.Tyres.ImpactAcceleration - car.Engine.ImpactAcceleration : defaultCar.Acceleration - car.Tyres.ImpactAcceleration;
+                TotalPriceCalc += car.Tyres.Price;
+            }
+
+            TotalPriceCalc += defaultCar.Price;
+            objs[0] = TotalPriceCalc;
+            objs[1] = car;
+
+            return objs;
+        }
+
+        public Car GetDefaultCarModel(string brand)
+        {
+            return model.GetDefaultCarModel(brand);
+        }
 
         //Add
         public void AddRims(Rims rims)

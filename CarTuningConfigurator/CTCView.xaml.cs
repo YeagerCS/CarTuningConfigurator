@@ -26,11 +26,7 @@ namespace CarTuningConfigurator
         Car carF;
         TuningView window = new TuningView();
         string[] stats = new string[5];
-        private int TotalImpactVelocity = 0;
-        private int TotalImpactAcceleration = 0;
-        private int TotalImpactBreakingForce = 0;
-        private int TotalImpactHorsePower = 0;
-        private int TotalImpactNitro = 0;
+        CTCController controller;
 
         public CTCView()
         {
@@ -44,10 +40,6 @@ namespace CarTuningConfigurator
         }
 
 
-
-
-
-
         public CTCView(string path, Car car, string carBrand, string carModel)
         {
             InitializeComponent();
@@ -57,6 +49,7 @@ namespace CarTuningConfigurator
             BitmapImage imageBItmap = new BitmapImage(uri);
             selectedCarImage.Source = imageBItmap;
             lblBrandModel.Content = carBrand + " " + carModel;
+            controller = new CTCController();
 
             DefineStats();
             lblPrice.Content += $"{carF.Price}$";
@@ -81,6 +74,8 @@ namespace CarTuningConfigurator
             {
                 lbxStats.Items.Add(stat);
             }
+
+            lblPrice.Content = $"Price: {carF.Price}$";
 
         }
 
@@ -159,168 +154,20 @@ namespace CarTuningConfigurator
             window.DataChanged += Window_DataChanged;
         }
 
+
         private void Window_DataChanged(object? sender, (Dictionary<string, double> impacts, TuningItem item, string type) e)
         {
-            List<TuningItem> items = new List<TuningItem>();
+            carF = controller.ApplyTuningItemToCar(e.impacts, e.item, carF);
+            object[] elems = controller.CalculatePriceAndStats(carF);
+            carF = (Car) elems[1];
+            double price = (double) elems[0];
+            carF.Price = price;
 
-            switch (e.type)
-            {
-                case "Breaks":
-                    if(carF.Break == null)
-                    {
-                        carF.Break = e.item as Break;
-                        TotalImpactBreakingForce += (int)e.impacts["ImpactBreakingForce"];
-                        stats[1] += $"+ {TotalImpactBreakingForce}";
-                    }
-                    else
-                    {
-                        DefineStats();
-                        carF.Break = e.item as Break;
-                        TotalImpactBreakingForce -= carF.Break.ImpactBreakingForce;
-                        TotalImpactBreakingForce += (int)e.impacts["ImpactBreakingForce"];
-                        stats[1] += $"+ {TotalImpactBreakingForce}";
-                    }
-                    break;
-                case "Nitros":
-                    if(carF.Nitro == null)
-                    {
-                        carF.Nitro = e.item as Nitro;
-                        TotalImpactNitro += (int)e.impacts["ImpactNitro"];
-                        stats[3] += $"+ {TotalImpactNitro}";
-                    }
-                    else
-                    {
-                        DefineStats();
-                        carF.Nitro = e.item as Nitro;
-                        TotalImpactNitro -= carF.Nitro.ImpactNitro;
-                        TotalImpactNitro += (int)e.impacts["ImpactNitro"];
-                        stats[3] += $"+ {TotalImpactNitro}";
-                    }
-                    break;
-                case "Engines":
-                    if(carF.Engine == null)
-                    {
-                        carF.Engine = e.item as Engine;
-                        TotalImpactAcceleration += (int)e.impacts["ImpactAcceleration"];
-                        stats[2] += $"- {TotalImpactAcceleration}";
-
-                        TotalImpactHorsePower += (int)e.impacts["ImpactHorsePower"];
-                        stats[4] += $"+ {TotalImpactHorsePower}";
-
-                        TotalImpactVelocity += (int)e.impacts["ImpactVelocity"];
-                        stats[0] += $"+ {TotalImpactVelocity}";
-                    }
-                    else
-                    {
-                        DefineStats();
-                        carF.Engine = e.item as Engine;
-                        TotalImpactAcceleration -= carF.Engine.ImpactAcceleration;
-                        TotalImpactAcceleration += (int)e.impacts["ImpactAcceleration"];
-                        stats[2] += $"- {TotalImpactAcceleration}";
-
-                        TotalImpactHorsePower -= carF.Engine.ImpactHorsePower;
-                        TotalImpactHorsePower += (int)e.impacts["ImpactHorsePower"];
-                        stats[4] += $"+ {TotalImpactHorsePower}";
-
-                        TotalImpactVelocity -= carF.Engine.ImpactVelocity;
-                        TotalImpactVelocity += (int)e.impacts["ImpactVelocity"];
-                        stats[0] += $"+ {TotalImpactVelocity}";
-                    }
-                    break;
-                case "Tyres":
-                    if(carF.Tyres == null)
-                    {
-                        carF.Tyres = e.item as Tyres;
-                        TotalImpactBreakingForce += (int)e.impacts["ImpactBreakingForce"];
-                        stats[1] += $"+ {TotalImpactBreakingForce}";
-
-                        TotalImpactAcceleration += (int)e.impacts["ImpactAcceleration"];
-                        stats[2] += $"- {TotalImpactAcceleration}";
-                    }
-                    else
-                    {
-                        DefineStats();
-                        carF.Tyres = e.item as Tyres;
-
-                        TotalImpactBreakingForce -= carF.Tyres.ImpactBreakingForce;
-                        TotalImpactBreakingForce += (int)e.impacts["ImpactBreakingForce"];
-                        stats[1] += $"+ {TotalImpactBreakingForce}";
-
-                        TotalImpactAcceleration -= carF.Tyres.ImpactAcceleration;
-                        TotalImpactAcceleration += (int)e.impacts["ImpactAcceleration"];
-                        stats[2] += $"- {TotalImpactAcceleration}";
-                    }
-                    break;
-                case "Exhausts":
-                    if(carF.Exhaust == null)
-                    {
-                        carF.Exhaust = e.item as Exhaust;
-
-                        TotalImpactNitro += (int)e.impacts["ImpactNitro"];
-                        stats[3] += $"+ {TotalImpactNitro}";
-                    }
-                    else
-                    {
-                        carF.Exhaust = e.item as Exhaust;
-
-                        TotalImpactNitro -= carF.Exhaust.ImpactNitro;
-                        TotalImpactNitro += (int)e.impacts["ImpactNitro"];
-                        stats[3] += $"+ {TotalImpactNitro}";
-                    }
-                    break;
-                case "Spoilers":
-                    if(carF.Spoiler == null)
-                    {
-                        carF.Spoiler = e.item as Spoiler;
-
-                        TotalImpactVelocity += (int)e.impacts["ImpactVelocity"];
-                        stats[0] += $"+ {TotalImpactVelocity}";
-                    }
-                    else
-                    {
-                        carF.Spoiler = e.item as Spoiler;
-
-                        TotalImpactVelocity -= carF.Spoiler.ImpactVelocity;
-                        TotalImpactVelocity += (int)e.impacts["ImpactVelocity"];
-                        stats[0] += $"+ {TotalImpactVelocity}";
-                    }
-                    break;
-                case "Rims":
-                    if(carF.Rims == null)
-                    {
-                        carF.Rims = e.item as Rims;
-                    }
-                    break;
-            }
-
-            items.Add(carF.Break);
-            items.Add(carF.Spoiler);
-            items.Add(carF.Engine);
-            items.Add(carF.Nitro);
-            items.Add(carF.Tyres);
-            items.Add(carF.Rims);
-            items.Add(carF.Exhaust);
-
-            lblPrice.Content = $"Price: {carF.Price + CalculatePrice(items)}$";
-
-            items.Add(e.item);
-
+            DefineStats();
             FillListBox(stats);
         }
 
-        public double CalculatePrice(List<TuningItem> items)
-        {
-            double totalPrice = 0;
-            foreach(TuningItem item in items) 
-            {
-                if(item != null)
-                {
-                    totalPrice += item.Price;
-                }
-            }
-
-            return totalPrice;
-        }
+        
 
     }
 }
