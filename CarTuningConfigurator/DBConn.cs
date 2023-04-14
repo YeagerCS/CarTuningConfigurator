@@ -24,7 +24,7 @@ namespace CarTuningConfigurator
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=10.195.252.88;user id=root;password=CasparBlond1200?;database=ctc;", new MySqlServerVersion(new Version(8, 0, 32)));
+            optionsBuilder.UseMySql("server=10.195.252.88;user id=root;password=CasparBlond1200?;database=cartc;", new MySqlServerVersion(new Version(8, 0, 32)));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace CarTuningConfigurator
             modelBuilder.Entity<Tyres>().ToTable(nameof(Tyres).ToLower());
             modelBuilder.Entity<Engine>().ToTable(nameof(Engine).ToLower());
             modelBuilder.Entity<Spoiler>().ToTable(nameof(Spoiler).ToLower());
-            modelBuilder.Entity<Car>().ToTable("defaultcar");
+            modelBuilder.Entity<Car>().ToTable(nameof(Car).ToLower());
             modelBuilder.Entity<Nitro>().ToTable(nameof(Nitro).ToLower());
             modelBuilder.Entity<Exhaust>().ToTable(nameof(Exhaust).ToLower());
         }
@@ -47,7 +47,7 @@ namespace CarTuningConfigurator
 
         public MySqlConnection GetDefaultConnection()
         {
-            string connectionString = $"server=10.195.252.88;user id=root;password=CasparBlond1200?;database=ctc;";
+            string connectionString = $"server=10.195.252.88;user id=root;password=CasparBlond1200?;database=cartc;";
             MySqlConnection conn = null;
             try
             {

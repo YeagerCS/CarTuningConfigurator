@@ -118,11 +118,15 @@ namespace CarTuningConfigurator
         {
             CTCView window = new CTCView(model.Cars[index].Image, model.Cars[index], model.Cars[index].Brand, model.Cars[index].Model);
             window.Show();
-            this.Close();
             var transitionStoryboard = (Storyboard)FindResource("windowTransition");
             transitionStoryboard.Begin(window);
             
 
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
