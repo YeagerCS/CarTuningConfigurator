@@ -38,7 +38,7 @@ namespace CarTuningConfigurator
 
 
 
-        public CTCView(string path, Car car)
+        public CTCView(string path, Car car, string carBrand, string carModel)
         {
             InitializeComponent();
             ResizeMode = ResizeMode.NoResize;
@@ -46,6 +46,14 @@ namespace CarTuningConfigurator
             Uri uri = new Uri(path, UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);
             selectedCarImage.Source = imageBItmap;
+            lblBrandModel.Content = carBrand + " " + carModel;
+
+            string[] stats = { $"Topspeed: {carF.TopSpeed} kmh", $"Braking force: {carF.BreakingForce}", $"Acceleration: {carF.Acceleration}s", $"Nitro: {carF.Nitro}", $"HP: {carF.Hp}" };
+
+            foreach (string stat in stats)
+            {
+                lbxStats.Items.Add(stat);
+            }
         }
         
         private void btnSpoiler_Click(object sender, RoutedEventArgs e)
@@ -95,6 +103,13 @@ namespace CarTuningConfigurator
             window = new TuningView("Breaks", carF);
 
             window.Show();
+        }
+
+        private void garageButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            window.Show();
+            this.Close();
         }
     }
 }
