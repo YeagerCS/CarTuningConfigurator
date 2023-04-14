@@ -7,6 +7,7 @@ using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarTuningConfigurator
 {
@@ -38,18 +39,21 @@ namespace CarTuningConfigurator
             Cars = new List<Car>();
             CarStats = new List<int>();
             TuningItems = new List<List<TuningItem>>();
-            conn = new DBConn().GetDefaultConnection();
+            conn = new DBContext().GetDefaultConnection();
 
             ReadDatabase();
 
         }
 
+
+
         public void ReadDatabase()
         {
-            string query = "SELECT * FROM defaultcar";
-            using(MySqlCommand command = new MySqlCommand(query, conn))
 
-            using(MySqlDataReader reader = command.ExecuteReader())
+            string query = "SELECT * FROM defaultcar";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+
+            using (MySqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
@@ -74,154 +78,15 @@ namespace CarTuningConfigurator
             }
 
             //Break
-            string query2 = "SELECT * FROM break";
-            using(MySqlCommand command = new MySqlCommand(query2, conn))
-
-            using(MySqlDataReader reader = command.ExecuteReader())
+            using (var context = new DBContext())
             {
-                while (reader.Read())
-                {
-                    Break @break = new Break(
-                          id: reader.GetInt32("id"),
-                          name: reader.GetString("name"),
-                          level: reader.GetInt32("level"),
-                          price: reader.GetDouble("price"),
-                          impactBreakingForce: reader.GetInt32("ImpactBreakingForce")
-                    );
-
-                    AddBreak(@break);
-                }
-            }
-
-            //Rims
-            string query3 = "SELECT * FROM rims";
-            using (MySqlCommand command = new MySqlCommand(query3, conn))
-
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Rims @rim = new Rims(
-                          id: reader.GetInt32("id"),
-                          name: reader.GetString("name"),
-                          level: reader.GetInt32("level"),
-                          price: reader.GetDouble("price"),
-                          type: reader.GetString("type"),
-                          color: reader.GetString("color")
-                    );
-
-                    AddRims(@rim);
-                }
-            }
-
-            //Tyres
-            string query4 = "SELECT * FROM tyres";
-            using (MySqlCommand command = new MySqlCommand(query4, conn))
-
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Tyres @tyre = new Tyres(
-                          id: reader.GetInt32("id"),
-                          name: reader.GetString("name"),
-                          level: reader.GetInt32("level"),
-                          price: reader.GetDouble("price"),
-                          type: reader.GetString("type"),
-                          impactBreakingForce: reader.GetInt32("ImpactBreakingforce"),
-                          impactAcceleration: reader.GetInt32("ImpactAcceleration")
-                    );
-
-                    AddTyres(@tyre);
-                }
-            }
-
-            //Engine
-            string query5 = "SELECT * FROM engine";
-            using (MySqlCommand command = new MySqlCommand(query5, conn))
-
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Engine @engine = new Engine(
-                          id: reader.GetInt32("id"),
-                          name: reader.GetString("name"),
-                          level: reader.GetInt32("level"),
-                          price: reader.GetDouble("price"),
-                          type: reader.GetString("type"),
-                          cylinder: reader.GetString("cylinder"),
-                          impactVelocity: reader.GetInt32("ImpactVelocity"),
-                          impactAcceleration: reader.GetInt32("ImpactAcceleration"),
-                          impactHorsePower: reader.GetInt32("ImpactHorsePower")
-                    );
-
-                    AddEngine(@engine);
-                }
-            }
-
-            //Spoiler
-            string query6 = "SELECT * FROM spoiler";
-            using (MySqlCommand command = new MySqlCommand(query6, conn))
-
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Spoiler @spoiler = new Spoiler(
-                          id: reader.GetInt32("id"),
-                          name: reader.GetString("name"),
-                          level: reader.GetInt32("level"),
-                          price: reader.GetDouble("price"),
-                          type: reader.GetString("type"),         
-                          impactVelocity: reader.GetInt32("ImpactVelocity")
-                          
-                    );
-
-                    AddSpoiler(@spoiler);
-                }
-            }
-
-            //Exhaust
-            string query7 = "SELECT * FROM exhaust";
-            using (MySqlCommand command = new MySqlCommand(query7, conn))
-
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Exhaust @exhaust = new Exhaust(
-                          id: reader.GetInt32("id"),
-                          name: reader.GetString("name"),
-                          level: reader.GetInt32("level"),
-                          price: reader.GetDouble("price"),
-                          impactNitro: reader.GetInt32("ImpactNitro")
-
-                    );
-
-                    AddExhaust(@exhaust);
-                }
-            }
-
-            //Nitro
-            string query8 = "SELECT * FROM nitro";
-            using (MySqlCommand command = new MySqlCommand(query8, conn))
-
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Nitro @nitro = new Nitro(
-                          id: reader.GetInt32("id"),
-                          name: reader.GetString("name"),
-                          level: reader.GetInt32("level"),
-                          price: reader.GetDouble("price"),
-                          impactNitro: reader.GetInt32("ImpactNitro")
-
-                    );
-
-                    AddNitro(@nitro);
-                }
+                Rims = context.Rims.ToList();
+                Spoilers = context.Spoilers.ToList();
+                Nitros = context.Nitros.ToList();
+                Engines = context.Engines.ToList();
+                Exhausts = context.Exhausts.ToList();
+                Tyres = context.Tyres.ToList();
+                Breaks = context.Breaks.ToList();
             }
         }
 
