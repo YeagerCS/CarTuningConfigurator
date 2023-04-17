@@ -26,13 +26,18 @@ namespace CarTuningConfigurator
         public HomeView()
         {
             InitializeComponent();
-            
-
         }
 
         private void newCar_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow(true);
             mainWindow.Show();
             this.Close();
         }
