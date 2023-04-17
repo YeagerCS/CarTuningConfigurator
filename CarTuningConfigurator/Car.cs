@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,32 +21,40 @@ namespace CarTuningConfigurator
         public string Model { get; set; }
         public string Color { get; set; }
         public bool TintedWindows { get; set; }
-        public double Weight { get; set; }
-        [ForeignKey("Spoiler_id")]
+        public int Weight { get; set; }
         public Spoiler Spoiler { get; set; }
-        [ForeignKey("Rims_id")]
         public Rims Rims { get; set; }
-        [ForeignKey("Nitro_id")]
         public Nitro Nitro { get; set; }
-        [ForeignKey("Engine_id")]
         public Engine Engine { get; set; }
-        [ForeignKey("Break_id")]
-        public Break Break { get; set; }
-        [ForeignKey("Exhaust_id")]
+        public Break? Break { get; set; }
         public Exhaust Exhaust { get; set; }
-        [ForeignKey("Tyres_id")]
         public Tyres Tyres { get; set; }
+        [Column("Spoiler_id")]
+        public int? SpoilerId { get; set; }
+        [Column("Rims_id")]
+        public int? RimsId { get; set; }
+        [Column("Nitro_id")]
+        public int? NitroId { get; set; }
+        [Column("Engine_id")]
+        public int? EngineId { get; set; }
+        [Column("Break_id")]
+        public int? BreakId { get; set; }
+        [Column("Exhaust_id")]
+        public int? ExhaustId { get; set; }
+        [Column("Tyres_id")]
+        public int? TyresId { get; set; }
+
         public double Price { get; set; }
         [Column("path")]
         public string Image { get; set; }
 
-        public Car(int id, int topSpeed, int breakingForce, int acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, double weight, Spoiler spoiler, Rims rims, Nitro Nitro, Engine engine, Break @break, Exhaust exhaust, Tyres tyres, string image)
+        public Car(int id, int topSpeed, int breakingForce, int acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, Spoiler spoiler, Rims rims, Nitro Nitro, Engine engine, Break @break, Exhaust exhaust, Tyres tyres, string image)
         {
             Id = id;
             TopSpeed = topSpeed;
             BreakingForce = breakingForce;
             Acceleration = acceleration;
-            this.Nitro = Nitro;
+            this.Nitro = Nitro; 
             Hp = hp;
             Brand = brand;
             Model = model;
@@ -60,9 +69,17 @@ namespace CarTuningConfigurator
             Exhaust = exhaust;
             Tyres = tyres;
             Image = image;
+
+            SpoilerId = Spoiler.SpoilerId;
+            RimsId = Rims.RimsId;
+            NitroId = Nitro.NitroId;
+            EngineId = Engine.EngineId;
+            BreakId = Break.BreakId;
+            ExhaustId = Exhaust.ExhaustId;
+            TyresId = Tyres.TyresId;
         }
 
-        public Car(int id, int topSpeed, int breakingForce, int acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, double weight, string image, double price)
+        public Car(int id, int topSpeed, int breakingForce, int acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, string image, double price)
         {
             Id = id;
             TopSpeed = topSpeed;

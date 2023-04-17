@@ -36,7 +36,7 @@ namespace CarTuningConfigurator
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.SaveToDatabase(carF);
         }
 
 
@@ -162,7 +162,9 @@ namespace CarTuningConfigurator
             carF = (Car) elems[1];
             double price = (double) elems[0];
             carF.Price = price;
+            Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
 
+            controller.ModifyLabels(ref labels, carF);
             DefineStats();
             FillListBox(stats);
         }
