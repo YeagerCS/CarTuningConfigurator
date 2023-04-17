@@ -19,6 +19,10 @@ namespace CarTuningConfigurator
     /// </summary>
     public partial class HomeView : Window
     {
+
+        CTCModel model = new CTCModel();
+
+        
         public HomeView()
         {
             InitializeComponent();

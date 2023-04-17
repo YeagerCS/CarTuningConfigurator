@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarTuningConfigurator"
         mc:Ignorable="d"
-        Title="HomeView" Height="410" Width="500">
+        Title="HomeView" Height="300" Width="500">
     <Grid>
-        <Button Content="NEW CAR" HorizontalAlignment="Left" Height="50" Margin="279,251,0,0" VerticalAlignment="Top" Width="170" FontFamily="Cascadia Code" Click="newCar_Click"/>
-        <Button Content="CONFIGURE CAR" HorizontalAlignment="Left" Height="50" Margin="279,315,0,0" VerticalAlignment="Top" Width="170" FontFamily="Cascadia Code"/>
-        <Label Content="CAR TUNING CONFIGURATOR" HorizontalAlignment="Left" Height="55" Margin="10,10,0,0" VerticalAlignment="Top" Width="417" FontFamily="Cascadia Code" FontSize="30"/>
-        <ListBox HorizontalAlignment="Left" Height="295" Margin="10,70,0,0" VerticalAlignment="Top" Width="253" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="25" x:Name="carList"/>
+        <Button Content="NEW CAR" HorizontalAlignment="Center" Height="50" Margin="0,126,0,0" VerticalAlignment="Top" Width="255" FontFamily="Cascadia Code" Click="newCar_Click"/>
+        <Button Content="CONFIGURE CAR" HorizontalAlignment="Center" Height="50" Margin="0,197,0,0" VerticalAlignment="Top" Width="255" FontFamily="Cascadia Code"/>
+        <Label Content="CAR TUNING CONFIGURATOR" HorizontalAlignment="Center" Height="55" Margin="0,10,0,0" VerticalAlignment="Top" Width="417" FontFamily="Cascadia Code" FontSize="30"/>
 
     </Grid>
 </Window>
