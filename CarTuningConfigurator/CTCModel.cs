@@ -73,6 +73,7 @@ namespace CarTuningConfigurator
                     Tyres = car.Tyres
                 };
 
+
                 context.Cars.Attach(newCar);
                 context.Entry(newCar).State = EntityState.Added;
                 context.SaveChanges();
@@ -156,7 +157,8 @@ namespace CarTuningConfigurator
                 Exhausts = context.Exhausts.ToList();
                 Tyres = context.Tyres.ToList();
                 Breaks = context.Breaks.ToList();
-                Cars = context.Cars.Include("Break").Include("Exhaust").Include("Spoiler").Include("Tyres").Include("Rims").Include("Nitro").Include("Engine").ToList();
+                Cars = context.Cars.Include("Break").Include("Exhaust").Include("Spoiler").Include("Tyres").Include("Rims").Include("Nitro").Include("Engine")
+                    .Where(x => x.isDefaultCar == 1).ToList();
             }
         }
 

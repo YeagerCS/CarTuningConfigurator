@@ -50,7 +50,9 @@ namespace CarTuningConfigurator
             selectedCarImage.Source = imageBItmap;
             lblBrandModel.Content = carBrand + " " + carModel;
             controller = new CTCController();
+            Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
 
+            controller.ModifyLabels(ref labels, carF);
             DefineStats();
             lblPrice.Content += $"{carF.Price}$";
 
