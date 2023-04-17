@@ -46,6 +46,39 @@ namespace CarTuningConfigurator
 
         }
 
+        public void SaveToDatabase(Car car)
+        {
+            using (var context = new DBContext())
+            {
+                var newCar = new Car
+                {
+                    TopSpeed = car.TopSpeed,
+                    BreakingForce = car.BreakingForce,
+                    Acceleration = car.Acceleration,
+                    nitroPower = car.nitroPower,
+                    Hp = car.Hp,
+                    Brand = car.Brand,
+                    Model = car.Model,
+                    Color = car.Color,
+                    TintedWindows = car.TintedWindows,
+                    Weight = car.Weight,
+                    Image = car.Image,
+                    Price = car.Price,
+                    Spoiler = car.Spoiler,
+                    Rims = car.Rims,
+                    Nitro = car.Nitro,
+                    Engine = car.Engine,
+                    Break = car.Break,
+                    Exhaust = car.Exhaust,
+                    Tyres = car.Tyres
+                };
+
+                context.Cars.Attach(newCar);
+                context.Entry(newCar).State = EntityState.Added;
+                context.SaveChanges();
+            }
+        }
+
 
         public Car GetDefaultCarModel(string brand)
         {
@@ -69,7 +102,7 @@ namespace CarTuningConfigurator
                         model: reader.GetString("model"),
                         color: reader.GetString("color"),
                         tintedWindows: reader.GetBoolean("tintedWindows"),
-                        weight: reader.GetDouble("weight"),
+                        weight: reader.GetInt32("weight"),
                         image: reader.GetString("path"),
                         price: reader.GetDouble("price")
                     );
@@ -86,32 +119,32 @@ namespace CarTuningConfigurator
         public void ReadDatabase()
         {
 
-            string query = "SELECT * FROM car WHERE isDefaultCar = 1";
-            using (MySqlCommand command = new MySqlCommand(query, conn))
+            //string query = "SELECT * FROM car WHERE isDefaultCar = 1";
+            //using (MySqlCommand command = new MySqlCommand(query, conn))
 
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Car car = new Car(
-                        id: reader.GetInt32("id"),
-                        topSpeed: reader.GetInt32("topSpeed"),
-                        breakingForce: reader.GetInt32("breakingForce"),
-                        acceleration: reader.GetInt32("acceleration"),
-                        nitroPower: reader.GetInt32("nitro"),
-                        hp: reader.GetInt32("hp"),
-                        brand: reader.GetString("brand"),
-                        model: reader.GetString("model"),
-                        color: reader.GetString("color"),
-                        tintedWindows: reader.GetBoolean("tintedWindows"),
-                        weight: reader.GetDouble("weight"),
-                        image: reader.GetString("path"),
-                        price: reader.GetDouble("price")
-                    );
+            //using (MySqlDataReader reader = command.ExecuteReader())
+            //{
+            //    while (reader.Read())
+            //    {
+            //        Car car = new Car(
+            //            id: reader.GetInt32("id"),
+            //            topSpeed: reader.GetInt32("topSpeed"),
+            //            breakingForce: reader.GetInt32("breakingForce"),
+            //            acceleration: reader.GetInt32("acceleration"),
+            //            nitroPower: reader.GetInt32("nitro"),
+            //            hp: reader.GetInt32("hp"),
+            //            brand: reader.GetString("brand"),
+            //            model: reader.GetString("model"),
+            //            color: reader.GetString("color"),
+            //            tintedWindows: reader.GetBoolean("tintedWindows"),
+            //            weight: reader.GetDouble("weight"),
+            //            image: reader.GetString("path"),
+            //            price: reader.GetDouble("price")
+            //        );
 
-                    AddCar(car);
-                }
-            }
+            //        AddCar(car);
+            //    }
+            //}
 
             //Break 
             using (var context = new DBContext())
@@ -123,7 +156,7 @@ namespace CarTuningConfigurator
                 Exhausts = context.Exhausts.ToList();
                 Tyres = context.Tyres.ToList();
                 Breaks = context.Breaks.ToList();
-                //Cars = context.Cars.Include("Breaks").Include("Exhausts").Include("Spoilers").Include("Tyres").Include("Rims").Include("Nitros").Include("Engines").ToList();
+                Cars = context.Cars.Include("Break").Include("Exhaust").Include("Spoiler").Include("Tyres").Include("Rims").Include("Nitro").Include("Engine").ToList();
             }
         }
 

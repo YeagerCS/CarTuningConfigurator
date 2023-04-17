@@ -101,43 +101,46 @@ namespace CarTuningConfigurator
         {
             var impacts = new Dictionary<string, double>();
             int index = lbxSpecs.SelectedIndex;
-            switch (current)
+            if(index != -1)
             {
-                case "Breaks":
-                    List<Break> breaks = TuningItems.Cast<Break>().ToList();
-                    impacts["ImpactBreakingForce"] = breaks[index].ImpactBreakingForce;
-                    impacts["Price"] = breaks[index].Price;
-                    break;
-                case "Nitros":
-                    List<Nitro> nitros = TuningItems.Cast<Nitro>().ToList();
-                    impacts["ImpactNitro"] = nitros[index].ImpactNitro;
-                    impacts["Price"] = nitros[index].Price;
-                    break;
-                case "Engines":
-                    List<Engine> engines = TuningItems.Cast<Engine>().ToList();
-                    impacts["ImpactAcceleration"] = engines[index].ImpactAcceleration;
-                    impacts["ImpactHorsePower"] = engines[index].ImpactHorsePower;
-                    impacts["ImpactVelocity"] = engines[index].ImpactVelocity;
-                    impacts["Price"] = engines[index].Price;
-                    break;
-                case "Tyres":
-                    List<Tyres> tyres = TuningItems.Cast<Tyres>().ToList();
-                    impacts["ImpactAcceleration"] = tyres[index].ImpactAcceleration;
-                    impacts["ImpactBreakingForce"] = tyres[index].ImpactBreakingForce;
-                    impacts["Price"] = tyres[index].Price;
-                    break;
-                case "Exhausts":
-                    List<Exhaust> exhausts = TuningItems.Cast<Exhaust>().ToList();
-                    impacts["ImpactNitro"] = exhausts[index].ImpactNitro;
-                    impacts["Price"] = exhausts[index].Price;
-                    break;
-                case "Spoilers":
-                    List<Spoiler> spoiler = TuningItems.Cast<Spoiler>().ToList();
-                    impacts["ImpactVelocity"] = spoiler[index].ImpactVelocity;
-                    impacts["Price"] = spoiler[index].Price;
-                    break;
+                switch (current)
+                {
+                    case "Breaks":
+                        List<Break> breaks = TuningItems.Cast<Break>().ToList();
+                        impacts["ImpactBreakingForce"] = breaks[index].ImpactBreakingForce;
+                        impacts["Price"] = breaks[index].Price;
+                        break;
+                    case "Nitros":
+                        List<Nitro> nitros = TuningItems.Cast<Nitro>().ToList();
+                        impacts["ImpactNitro"] = nitros[index].ImpactNitro;
+                        impacts["Price"] = nitros[index].Price;
+                        break;
+                    case "Engines":
+                        List<Engine> engines = TuningItems.Cast<Engine>().ToList();
+                        impacts["ImpactAcceleration"] = engines[index].ImpactAcceleration;
+                        impacts["ImpactHorsePower"] = engines[index].ImpactHorsePower;
+                        impacts["ImpactVelocity"] = engines[index].ImpactVelocity;
+                        impacts["Price"] = engines[index].Price;
+                        break;
+                    case "Tyres":
+                        List<Tyres> tyres = TuningItems.Cast<Tyres>().ToList();
+                        impacts["ImpactAcceleration"] = tyres[index].ImpactAcceleration;
+                        impacts["ImpactBreakingForce"] = tyres[index].ImpactBreakingForce;
+                        impacts["Price"] = tyres[index].Price;
+                        break;
+                    case "Exhausts":
+                        List<Exhaust> exhausts = TuningItems.Cast<Exhaust>().ToList();
+                        impacts["ImpactNitro"] = exhausts[index].ImpactNitro;
+                        impacts["Price"] = exhausts[index].Price;
+                        break;
+                    case "Spoilers":
+                        List<Spoiler> spoiler = TuningItems.Cast<Spoiler>().ToList();
+                        impacts["ImpactVelocity"] = spoiler[index].ImpactVelocity;
+                        impacts["Price"] = spoiler[index].Price;
+                        break;
+                }
+                DataChanged?.Invoke(this, (impacts, TuningItems[index], current));
             }
-            DataChanged?.Invoke(this, (impacts, TuningItems[index], current));
         }
     }
     

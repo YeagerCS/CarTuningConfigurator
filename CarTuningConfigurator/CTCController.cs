@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace CarTuningConfigurator
 {
     public class CTCController
     {
         private CTCModel model;
+        private List<TuningItem?> tuningItems;
 
         public CTCController()
         {
@@ -96,6 +98,34 @@ namespace CarTuningConfigurator
             objs[1] = car;
 
             return objs;
+        }
+
+        public void ModifyLabels(ref Label[] labels, Car car)
+        {
+            tuningItems = new List<TuningItem?>
+            {
+                car.Rims,
+                car.Spoiler,
+                car.Nitro,
+                car.Engine,
+                car.Break,
+                car.Exhaust,
+                car.Tyres
+            };
+            int i = 0;
+            foreach (TuningItem item in tuningItems)
+            {
+                if (item != null)
+                {
+                    labels[i].Content = item.Name;
+                }
+                i++;
+            }
+        }
+
+        public void SaveToDatabase(Car car)
+        {
+            model.SaveToDatabase(car);
         }
 
         public Car GetDefaultCarModel(string brand)
