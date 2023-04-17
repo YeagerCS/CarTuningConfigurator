@@ -27,6 +27,7 @@ namespace CarTuningConfigurator
         TuningView window = new TuningView();
         string[] stats = new string[5];
         CTCController controller;
+        private bool isUpdate = false;
 
         public CTCView()
         {
@@ -36,7 +37,22 @@ namespace CarTuningConfigurator
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            controller.SaveToDatabase(carF);
+            if (isUpdate)
+            {
+                controller.UpdateDatabase(carF);
+                MessageBox.Show("Car successfully updated", "Car Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                MainWindow mainWindow = new MainWindow(true);
+                mainWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                controller.SaveToDatabase(carF);
+                MessageBox.Show("Car successfully Inserted", "Car Inserted", MessageBoxButton.OK, MessageBoxImage.Information);
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
         }
 
 
@@ -52,9 +68,9 @@ namespace CarTuningConfigurator
             controller = new CTCController();
             Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
 
-            controller.ModifyLabels(ref labels, carF);
+            isUpdate = controller.ModifyLabels(ref labels, carF);
             DefineStats();
-            lblPrice.Content += $"{carF.Price}$";
+            lblPrice.Content += $"{Math.Round(carF.Price, 2)}$";
 
             FillListBox(stats);
         }
@@ -77,7 +93,7 @@ namespace CarTuningConfigurator
                 lbxStats.Items.Add(stat);
             }
 
-            lblPrice.Content = $"Price: {carF.Price}$";
+            lblPrice.Content = $"Price: {Math.Round(carF.Price, 2)}$";
 
         }
 
@@ -146,7 +162,7 @@ namespace CarTuningConfigurator
 
         private void garageButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow window = new MainWindow();
+            HomeView window = new HomeView();
             window.Show();
             this.Close();
         }
@@ -163,7 +179,7 @@ namespace CarTuningConfigurator
             object[] elems = controller.CalculatePriceAndStats(carF);
             carF = (Car) elems[1];
             double price = (double) elems[0];
-            carF.Price = price;
+            carF.Price = Math.Round(price, 2);
             Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
 
             controller.ModifyLabels(ref labels, carF);

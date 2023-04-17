@@ -138,6 +138,8 @@ namespace CarTuningConfigurator
                         impacts["ImpactVelocity"] = spoiler[index].ImpactVelocity;
                         impacts["Price"] = spoiler[index].Price;
                         break;
+                    default:
+                        throw new NotImplementedException("This shouldn't happen");
                 }
                 DataChanged?.Invoke(this, (impacts, TuningItems[index], current));
             }

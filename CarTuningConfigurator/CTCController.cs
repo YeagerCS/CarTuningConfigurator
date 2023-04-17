@@ -18,6 +18,7 @@ namespace CarTuningConfigurator
         }
         public Car ApplyTuningItemToCar(Dictionary<string, double> impacts, TuningItem item, Car carF)
         {
+            //refactor with switch case
             if (item is Spoiler)
             {
                 carF.Spoiler = (Spoiler)item;
@@ -100,8 +101,9 @@ namespace CarTuningConfigurator
             return objs;
         }
 
-        public void ModifyLabels(ref Label[] labels, Car car)
+        public bool ModifyLabels(ref Label[] labels, Car car)
         {
+            bool isUpdate = false;
             tuningItems = new List<TuningItem?>
             {
                 car.Rims,
@@ -117,15 +119,23 @@ namespace CarTuningConfigurator
             {
                 if (item != null)
                 {
+                    isUpdate = true;
                     labels[i].Content = item.Name;
                 }
                 i++;
             }
+
+            return isUpdate;
         }
 
         public void SaveToDatabase(Car car)
         {
             model.SaveToDatabase(car);
+        }
+
+        public void UpdateDatabase(Car car)
+        {
+            model.UpdateDatabase(car);
         }
 
         public Car GetDefaultCarModel(string brand)

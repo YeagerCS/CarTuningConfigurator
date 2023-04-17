@@ -22,12 +22,45 @@ namespace CarTuningConfigurator
     /// </summary>
     public partial class MainWindow : Window
     {
-        CTCModel model = new CTCModel();
+        CTCModel model;
 
         int index = 0;
 
+        public MainWindow(bool configure)
+        {
+            model = new CTCModel(true);
+            InitializeComponent();
+            Uri uri = new Uri(model.Cars[index].Image, UriKind.Relative);
+            BitmapImage imageBItmap = new BitmapImage(uri);
+
+            selectedCarImage.Source = imageBItmap;
+
+            // Update the label and triangle visibility
+            if (index == 0)
+            {
+                triangleLeft.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                triangleLeft.Visibility = Visibility.Visible;
+            }
+
+            if (index == model.Cars.Count - 1)
+            {
+                triangleRight.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                triangleRight.Visibility = Visibility.Visible;
+            }
+
+            lblBrandModel.Content = model.Cars[index].Brand + " " + model.Cars[index].Model;
+            lblPrice_Copy.Content = "Value: ";
+            lblPrice.Content = model.Cars[index].Price + "$";
+        }
         public MainWindow()
         {
+            model = new CTCModel();
             InitializeComponent();
             Uri uri = new Uri(model.Cars[index].Image, UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);
@@ -123,6 +156,7 @@ namespace CarTuningConfigurator
             window.Show();
             var transitionStoryboard = (Storyboard)FindResource("windowTransition");
             transitionStoryboard.Begin(window);
+            this.Close();
             
             
 

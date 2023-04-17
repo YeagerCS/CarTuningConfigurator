@@ -22,7 +22,7 @@ namespace CarTuningConfigurator
         public List<Exhaust> Exhausts { get; set; }
         public List<Tyres> Tyres { get; set; }
         public List<Car> Cars { get; set; }
-        public List<int> CarStats { get; set; }
+        public List<Car> TunedCars { get; set; }
         public List<List<TuningItem>> TuningItems { get; set; }
 
         private MySqlConnection conn;
@@ -38,12 +38,60 @@ namespace CarTuningConfigurator
             Exhausts = new List<Exhaust>();
             Tyres = new List<Tyres>();
             Cars = new List<Car>();
-            CarStats = new List<int>();
+            TunedCars = new List<Car>();
             TuningItems = new List<List<TuningItem>>();
             conn = new DBContext().GetDefaultConnection();
 
             ReadDatabase();
 
+        }
+
+        public CTCModel(bool config)
+        {
+            Rims = new List<Rims>();
+            Spoilers = new List<Spoiler>();
+            Nitros = new List<Nitro>();
+            Engines = new List<Engine>();
+            Breaks = new List<Break>();
+            Exhausts = new List<Exhaust>();
+            Tyres = new List<Tyres>();
+            Cars = new List<Car>();
+            TunedCars = new List<Car>();
+            TuningItems = new List<List<TuningItem>>();
+            conn = new DBContext().GetDefaultConnection();
+
+            ReadTunedCars();
+
+        }
+
+        public void UpdateDatabase(Car car)
+        {
+            using (var context = new DBContext())
+            {
+                Car? existingCar = context.Cars.Find(car.Id);
+
+                existingCar.TopSpeed = car.TopSpeed;
+                existingCar.BreakingForce = car.BreakingForce;
+                existingCar.Acceleration = car.Acceleration;
+                existingCar.nitroPower = car.nitroPower;
+                existingCar.Hp = car.Hp;
+                existingCar.Brand = car.Brand;
+                existingCar.Model = car.Model;
+                existingCar.Color = car.Color;
+                existingCar.TintedWindows = car.TintedWindows;
+                existingCar.Weight = car.Weight;
+                existingCar.Image = car.Image;
+                existingCar.Price = car.Price;
+                existingCar.Spoiler = car.Spoiler;
+                existingCar.Rims = car.Rims;
+                existingCar.Nitro = car.Nitro;
+                existingCar.Engine = car.Engine;
+                existingCar.Break = car.Break;
+                existingCar.Exhaust = car.Exhaust;
+                existingCar.Tyres = car.Tyres;
+
+                context.SaveChanges();
+            }
         }
 
         public void SaveToDatabase(Car car)
@@ -85,31 +133,10 @@ namespace CarTuningConfigurator
         {
 
             List<Car> defCars = new List<Car>();
-            string query = $"SELECT * FROM car WHERE brand = '{brand}' and isDefaultCar = 1";
-            using (MySqlCommand command = new MySqlCommand(query, conn))
-
-            using (MySqlDataReader reader = command.ExecuteReader())
+            using(var context = new DBContext())
             {
-                while (reader.Read())
-                {
-                    Car car = new Car(
-                        id: reader.GetInt32("id"),
-                        topSpeed: reader.GetInt32("topSpeed"),
-                        breakingForce: reader.GetInt32("breakingForce"),
-                        acceleration: reader.GetInt32("acceleration"),
-                        nitroPower: reader.GetInt32("nitro"),
-                        hp: reader.GetInt32("hp"),
-                        brand: reader.GetString("brand"),
-                        model: reader.GetString("model"),
-                        color: reader.GetString("color"),
-                        tintedWindows: reader.GetBoolean("tintedWindows"),
-                        weight: reader.GetInt32("weight"),
-                        image: reader.GetString("path"),
-                        price: reader.GetDouble("price")
-                    );
-
-                    defCars.Add(car);
-                }
+                defCars = context.Cars.Include("Break").Include("Exhaust").Include("Spoiler").Include("Tyres").Include("Rims").Include("Nitro").Include("Engine")
+                    .Where(x => x.isDefaultCar == 1).Where(y => y.Brand == brand).ToList(); 
             }
 
             return defCars[0];   
@@ -119,35 +146,7 @@ namespace CarTuningConfigurator
 
         public void ReadDatabase()
         {
-
-            //string query = "SELECT * FROM car WHERE isDefaultCar = 1";
-            //using (MySqlCommand command = new MySqlCommand(query, conn))
-
-            //using (MySqlDataReader reader = command.ExecuteReader())
-            //{
-            //    while (reader.Read())
-            //    {
-            //        Car car = new Car(
-            //            id: reader.GetInt32("id"),
-            //            topSpeed: reader.GetInt32("topSpeed"),
-            //            breakingForce: reader.GetInt32("breakingForce"),
-            //            acceleration: reader.GetInt32("acceleration"),
-            //            nitroPower: reader.GetInt32("nitro"),
-            //            hp: reader.GetInt32("hp"),
-            //            brand: reader.GetString("brand"),
-            //            model: reader.GetString("model"),
-            //            color: reader.GetString("color"),
-            //            tintedWindows: reader.GetBoolean("tintedWindows"),
-            //            weight: reader.GetDouble("weight"),
-            //            image: reader.GetString("path"),
-            //            price: reader.GetDouble("price")
-            //        );
-
-            //        AddCar(car);
-            //    }
-            //}
-
-            //Break 
+            //Read 
             using (var context = new DBContext())
             {
                 Rims = context.Rims.ToList();
@@ -162,7 +161,23 @@ namespace CarTuningConfigurator
             }
         }
 
-        public CTCModel(List<Rims> rims, List<Spoiler> spoilers, List<Nitro> nitros, List<Engine> engines, List<Break> breaks, List<Exhaust> exhaust, List<Tyres> tyres, List<Car> cars, List<int> carStats, List<List<TuningItem>> tuningItems, MySqlConnection conn)
+        public void ReadTunedCars()
+        {
+            using (var context = new DBContext())
+            {
+                Rims = context.Rims.ToList();
+                Spoilers = context.Spoilers.ToList();
+                Nitros = context.Nitros.ToList();
+                Engines = context.Engines.ToList();
+                Exhausts = context.Exhausts.ToList();
+                Tyres = context.Tyres.ToList();
+                Breaks = context.Breaks.ToList();
+                Cars = context.Cars.Include("Break").Include("Exhaust").Include("Spoiler").Include("Tyres").Include("Rims").Include("Nitro").Include("Engine")
+                    .Where(x => x.isDefaultCar == 0).ToList();
+            }
+        }
+
+        public CTCModel(List<Rims> rims, List<Spoiler> spoilers, List<Nitro> nitros, List<Engine> engines, List<Break> breaks, List<Exhaust> exhaust, List<Tyres> tyres, List<Car> cars, List<Car> tunedCars, List<List<TuningItem>> tuningItems, MySqlConnection conn)
         {
             Rims = rims;
             Spoilers = spoilers;
@@ -172,7 +187,7 @@ namespace CarTuningConfigurator
             Exhausts = exhaust;
             Tyres = tyres;
             Cars = cars;
-            CarStats = carStats;
+            TunedCars = tunedCars;
             TuningItems = tuningItems;
             this.conn = conn;
         }
