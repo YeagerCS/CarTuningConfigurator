@@ -47,6 +47,7 @@ namespace CarTuningConfigurator
         public double Price { get; set; }
         [Column("path")]
         public string Image { get; set; }
+        public int isDefaultCar { get; set; }
 
         public Car(int id, int topSpeed, int breakingForce, int acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, Spoiler spoiler, Rims rims, Nitro Nitro, Engine engine, Break @break, Exhaust exhaust, Tyres tyres, string image)
         {
