@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace CarTuningConfigurator
 {
     public class Engine : TuningItem
     {
+        [Column("engine_id")]
+        public int EngineId { get; set; }
         public string Type { get; set; }
         public string Cylinder { get; set; }
         public int ImpactVelocity { get; set; }
@@ -25,7 +28,7 @@ namespace CarTuningConfigurator
 
         public Engine(int id, string name, string type, string cylinder, int level, double price, int impactVelocity, int impactAcceleration, int impactHorsePower)
         {
-            Id = id;
+            EngineId = id;
             Name = name;
             Type = type;
             Cylinder = cylinder;

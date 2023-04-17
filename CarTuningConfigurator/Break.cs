@@ -9,6 +9,8 @@ namespace CarTuningConfigurator
 {
     public class Break : TuningItem
     {
+        [Column("Break_id")]
+        public int BreakId { get; set; }
         public int ImpactBreakingForce { get; set; }
 
         public Break(int impactBreakingForce)
@@ -18,7 +20,7 @@ namespace CarTuningConfigurator
 
         public Break(int id, string name, int level, double price, int impactBreakingForce)
         {
-            Id = id;
+            BreakId = id;
             Name = name;
             Level = level;
             Price = price;
