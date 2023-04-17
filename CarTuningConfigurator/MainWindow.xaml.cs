@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Tls.Crypto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,6 +55,8 @@ namespace CarTuningConfigurator
 
             lblBrandModel.Content = model.Cars[index].Brand + " " + model.Cars[index].Model;
             lblPrice.Content = $"{model.Cars[index].Price}$";
+
+            
         }
 
         private async void updateImage()
@@ -121,12 +124,13 @@ namespace CarTuningConfigurator
             var transitionStoryboard = (Storyboard)FindResource("windowTransition");
             transitionStoryboard.Begin(window);
             
+            
 
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            Application.Current.Shutdown();
+            
         }
     }
 }
