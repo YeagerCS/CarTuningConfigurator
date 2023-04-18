@@ -13,7 +13,7 @@ namespace CarTuningConfigurator
         public int Id { get; set; }
         public int TopSpeed { get; set; }
         public int BreakingForce { get; set; }
-        public int Acceleration { get; set; }
+        public double Acceleration { get; set; }
         [Column("nitro")]
         public int nitroPower { get; set; }
         public int Hp { get; set; }
@@ -49,7 +49,7 @@ namespace CarTuningConfigurator
         public string Image { get; set; }
         public int isDefaultCar { get; set; }
 
-        public Car(int id, int topSpeed, int breakingForce, int acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, Spoiler? spoiler, Rims? rims, Nitro? Nitro, Engine? engine, Break? @break, Exhaust? exhaust, Tyres? tyres, string image)
+        public Car(int id, int topSpeed, int breakingForce, double acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, Spoiler? spoiler, Rims? rims, Nitro? Nitro, Engine? engine, Break? @break, Exhaust? exhaust, Tyres? tyres, string image)
         {
             Id = id;
             TopSpeed = topSpeed;
@@ -80,7 +80,7 @@ namespace CarTuningConfigurator
             TyresId = Tyres.TyresId;
         }
 
-        public Car(int id, int topSpeed, int breakingForce, int acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, string image, double price)
+        public Car(int id, int topSpeed, int breakingForce, double acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, string image, double price)
         {
             Id = id;
             TopSpeed = topSpeed;

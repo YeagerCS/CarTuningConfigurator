@@ -23,12 +23,14 @@ namespace CarTuningConfigurator
     public partial class MainWindow : Window
     {
         CTCModel model;
-
+        private BrushConverter converter = new BrushConverter();
+        bool isConfig = false;
         int index = 0;
 
         public MainWindow(bool configure)
         {
             model = new CTCModel(true);
+            isConfig = true;
             InitializeComponent();
             Uri uri = new Uri(model.Cars[index].Image, UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);
@@ -57,6 +59,27 @@ namespace CarTuningConfigurator
             lblBrandModel.Content = model.Cars[index].Brand + " " + model.Cars[index].Model;
             lblPrice_Copy.Content = "Value: ";
             lblPrice.Content = model.Cars[index].Price + "$";
+            InitializeStatistics();
+
+            plyColor.Fill = (Brush)converter.ConvertFromString(model.Cars[index].Color);
+        }
+
+        public void InitializeStatistics()
+        {
+            lblHP.Content = model.Cars[index].Hp + "HP";
+            lblTopSpeed.Content = model.Cars[index].TopSpeed + "km/h";
+            if (model.Cars[index].Engine == null || model.Cars[index].Engine.Name == "Default")
+            {
+                lblEngineName.Content = "Default";
+                lblEngineType.Content = "Default/Gasoline";
+                lblEngineCylinder.Content = "Default";
+            }
+            else
+            {
+                lblEngineName.Content = model.Cars[index].Engine.Name;
+                lblEngineType.Content = model.Cars[index].Engine.Type;
+                lblEngineCylinder.Content = model.Cars[index].Engine.Cylinder;
+            }
         }
         public MainWindow()
         {
@@ -89,7 +112,7 @@ namespace CarTuningConfigurator
             lblBrandModel.Content = model.Cars[index].Brand + " " + model.Cars[index].Model;
             lblPrice.Content = $"{model.Cars[index].Price}$";
 
-            
+            plyColor.Fill = (Brush)converter.ConvertFromString(model.Cars[index].Color);
         }
 
         private async void updateImage()
@@ -137,17 +160,22 @@ namespace CarTuningConfigurator
             {
                 index++;
                 updateImage();
+                plyColor.Fill = (Brush)converter.ConvertFromString(model.Cars[index].Color);
+                if(isConfig) InitializeStatistics();
             }
         }
 
         private void triangleLeft_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(index > 0)
+
+            if (index > 0)
             {
                 index--;
                 updateImage();
+                plyColor.Fill = (Brush)converter.ConvertFromString(model.Cars[index].Color);
+                if(isConfig) InitializeStatistics();
             }
-            
+
         }
 
         private void selectedCarImage_MouseDown(object sender, MouseButtonEventArgs e)
@@ -165,6 +193,13 @@ namespace CarTuningConfigurator
         private void Window_Closed(object sender, EventArgs e)
         {
             
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            HomeView homeView = new HomeView();
+            homeView.Show();
+            this.Close();
         }
     }
 }
