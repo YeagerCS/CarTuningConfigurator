@@ -25,7 +25,6 @@ namespace CarTuningConfigurator
         public List<Car> TunedCars { get; set; }
         public List<List<TuningItem>> TuningItems { get; set; }
 
-        private MySqlConnection conn;
 
 
         public CTCModel() 
@@ -40,7 +39,6 @@ namespace CarTuningConfigurator
             Cars = new List<Car>();
             TunedCars = new List<Car>();
             TuningItems = new List<List<TuningItem>>();
-            conn = new DBContext().GetDefaultConnection();
 
             ReadDatabase();
 
@@ -58,7 +56,6 @@ namespace CarTuningConfigurator
             Cars = new List<Car>();
             TunedCars = new List<Car>();
             TuningItems = new List<List<TuningItem>>();
-            conn = new DBContext().GetDefaultConnection();
 
             ReadTunedCars();
 
@@ -90,6 +87,7 @@ namespace CarTuningConfigurator
                 existingCar.Exhaust = car.Exhaust;
                 existingCar.Tyres = car.Tyres;
 
+                context.Entry(existingCar).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
@@ -177,7 +175,7 @@ namespace CarTuningConfigurator
             }
         }
 
-        public CTCModel(List<Rims> rims, List<Spoiler> spoilers, List<Nitro> nitros, List<Engine> engines, List<Break> breaks, List<Exhaust> exhaust, List<Tyres> tyres, List<Car> cars, List<Car> tunedCars, List<List<TuningItem>> tuningItems, MySqlConnection conn)
+        public CTCModel(List<Rims> rims, List<Spoiler> spoilers, List<Nitro> nitros, List<Engine> engines, List<Break> breaks, List<Exhaust> exhaust, List<Tyres> tyres, List<Car> cars, List<Car> tunedCars, List<List<TuningItem>> tuningItems)
         {
             Rims = rims;
             Spoilers = spoilers;
@@ -189,7 +187,6 @@ namespace CarTuningConfigurator
             Cars = cars;
             TunedCars = tunedCars;
             TuningItems = tuningItems;
-            this.conn = conn;
         }
 
         public void AddRims(Rims rims)

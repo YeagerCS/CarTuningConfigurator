@@ -16,37 +16,74 @@ namespace CarTuningConfigurator
         {
             model = new CTCModel();
         }
-        public Car ApplyTuningItemToCar(Dictionary<string, double> impacts, TuningItem item, Car carF)
+        public Car ApplyTuningItemToCar(Dictionary<string, double> impacts, TuningItem? item, Car carF, string type)
         {
-            //refactor with switch case
-            if (item is Spoiler)
+            if(item != null)
             {
-                carF.Spoiler = (Spoiler)item;
+                if (item is Spoiler)
+                {
+                    carF.Spoiler = (Spoiler)item;
+                }
+                else if (item is Rims)
+                {
+                    carF.Rims = (Rims)item;
+                }
+                else if (item is Nitro)
+                {
+                    carF.Nitro = (Nitro)item;
+                }
+                else if (item is Engine)
+                {
+                    carF.Engine = (Engine)item;
+                }
+                else if (item is Break)
+                {
+                    carF.Break = (Break)item;
+                }
+                else if (item is Exhaust)
+                {
+                    carF.Exhaust = (Exhaust)item;
+                }
+                else if (item is Tyres)
+                {
+                    carF.Tyres = (Tyres)item;
+                }
             }
-            else if (item is Rims)
+            else
             {
-                carF.Rims = (Rims)item;
+                switch(type)
+                {
+                    case "Spoilers":
+                        carF.Spoiler = null;
+                        carF.SpoilerId = null;
+                        break;
+                    case "Rims":
+                        carF.Rims = null;
+                        carF.RimsId = null;
+                        break;
+                    case "Nitros":
+                        carF.Nitro = null;
+                        carF.NitroId = null;
+                        break;
+                    case "Engines":
+                        carF.Engine = null;
+                        carF.EngineId = null;
+                        break;
+                    case "Breaks":
+                        carF.Break = null;
+                        carF.BreakId = null;
+                        break;
+                    case "Exhausts":
+                        carF.Exhaust = null;
+                        carF.ExhaustId = null;
+                        break;
+                    case "Tyres":
+                        carF.Tyres = null;
+                        carF.TyresId = null;
+                        break;
+                }
             }
-            else if (item is Nitro)
-            {
-                carF.Nitro = (Nitro)item;
-            }
-            else if (item is Engine)
-            {
-                carF.Engine = (Engine)item;
-            }
-            else if (item is Break)
-            {
-                carF.Break = (Break)item;
-            }
-            else if (item is Exhaust)
-            {
-                carF.Exhaust = (Exhaust)item;
-            }
-            else if (item is Tyres)
-            {
-                carF.Tyres = (Tyres)item;
-            }
+            
 
             return carF;
         }
@@ -121,6 +158,10 @@ namespace CarTuningConfigurator
                 {
                     isUpdate = true;
                     labels[i].Content = item.Name;
+                }
+                else
+                {
+                    labels[i].Content = "";
                 }
                 i++;
             }
