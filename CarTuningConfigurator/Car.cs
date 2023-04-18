@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarTuningConfigurator
 {
-    public class Car
+    public class Car : ICloneable
     {
         public int Id { get; set; }
         public int TopSpeed { get; set; }
@@ -100,6 +100,10 @@ namespace CarTuningConfigurator
         public Car()
         {
 
+        }
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

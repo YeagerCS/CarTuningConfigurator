@@ -16,23 +16,26 @@
     <PackageReference Include="MySql.Data" Version="8.0.32.1" />
     <PackageReference Include="MySqlConnector" Version="2.2.5" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
-    <None Remove="car1.jpg" />
-    <None Remove="car2.jpg" />
-    <None Remove="car3.jpg" />
-    <None Remove="car4.jpg" />
+    <None Remove="images\car1.jpg" />
+    <None Remove="images\car2.jpg" />
+    <None Remove="images\car3.jpg" />
+    <None Remove="images\car4.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="car1.jpg">
+    <Content Include="images\car1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="car2.jpg">
+    <Content Include="images\car3.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="car3.jpg">
+    <Content Include="images\car4.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="car4.jpg">
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="images\car2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

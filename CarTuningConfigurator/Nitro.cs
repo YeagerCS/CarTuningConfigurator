@@ -10,7 +10,7 @@ namespace CarTuningConfigurator
     public class Nitro : TuningItem
     {
         [Column("nitro_id")]
-        public int NitroId { get; set; }
+        public int? NitroId { get; set; }
         public int ImpactNitro { get; set; }
 
         public Nitro(int impactNitro) 
@@ -18,6 +18,7 @@ namespace CarTuningConfigurator
             ImpactNitro = impactNitro;
         }
 
+        public Nitro() { }
         public Nitro(int id, string name, int level, double price, int impactNitro)
         {
             NitroId = id;

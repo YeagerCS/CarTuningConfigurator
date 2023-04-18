@@ -11,8 +11,8 @@ namespace CarTuningConfigurator
     public class Spoiler : TuningItem
     {
         [Column("spoiler_id")]
-        public int SpoilerId { get; set; }
-        public string Type { get; set; }
+        public int? SpoilerId { get; set; }
+        public string? Type { get; set; }
         public int ImpactVelocity { get; set; }
 
         public Spoiler(string type, int impactVelocity)
@@ -21,9 +21,20 @@ namespace CarTuningConfigurator
             ImpactVelocity = impactVelocity;
         }
 
+        public Spoiler() { }
+
         public Spoiler(int id, string type, string name, int level, double price, int impactVelocity) 
         {
             SpoilerId = id;
+            Type = type;
+            Name = name;
+            Level = level;
+            Price = price;
+            ImpactVelocity = impactVelocity;
+        }
+
+        public Spoiler(string type, string name, int level, double price, int impactVelocity)
+        {
             Type = type;
             Name = name;
             Level = level;

@@ -145,10 +145,6 @@ namespace CarTuningConfigurator
                 }
                 DataChanged?.Invoke(this, (impacts, TuningItems[index], current));
             }
-            else
-            {
-                DataChanged?.Invoke(this, (impacts, null, current));
-            }
         }
     }
     
