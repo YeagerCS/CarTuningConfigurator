@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Identity.Client;
+using System.Text.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.ConstrainedExecution;
@@ -248,29 +250,15 @@ namespace CarTuningConfigurator
             BrushConverter converter = new BrushConverter();
             Window dialog = new Window();
 
+            string json = File.ReadAllText("colors.json");
+
+            List<string> colors = JsonSerializer.Deserialize<List<string>>(json);
+
             ListBox listbox = new ListBox();
-            listbox.Items.Add("Black");
-            listbox.Items.Add("Red");
-            listbox.Items.Add("White");
-            listbox.Items.Add("Blue");
-            listbox.Items.Add("Green");
-            listbox.Items.Add("Silver");
-            listbox.Items.Add("Yellow");
-            listbox.Items.Add("Lime");
-            listbox.Items.Add("Lightblue");
-            listbox.Items.Add("Orange");
-            listbox.Items.Add("SaddleBrown");
-            listbox.Items.Add("Aquamarine");
-            listbox.Items.Add("Purple");
-            listbox.Items.Add("Navy");
-            listbox.Items.Add("Aqua");
-            listbox.Items.Add("DarkRed");
-            listbox.Items.Add("GhostWhite");
-            listbox.Items.Add("Plum");
-            listbox.Items.Add("Bisque");
-            listbox.Items.Add("MediumVioletRed");
-            listbox.Items.Add("SlateGray");
-            listbox.Items.Add("Teal");
+            foreach(string color in colors)
+            {
+                listbox.Items.Add(color);
+            }
             listbox.FontSize = 14;
             listbox.Name = "lbxColor";
 
