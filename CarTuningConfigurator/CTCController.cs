@@ -1,8 +1,10 @@
-﻿using System;
+﻿using K4os.Compression.LZ4.Encoders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CarTuningConfigurator
@@ -18,72 +20,34 @@ namespace CarTuningConfigurator
         }
         public Car ApplyTuningItemToCar(Dictionary<string, double> impacts, TuningItem? item, Car carF, string type)
         {
-            if(item != null)
+            if (item is Spoiler)
             {
-                if (item is Spoiler)
-                {
-                    carF.Spoiler = (Spoiler)item;
-                }
-                else if (item is Rims)
-                {
-                    carF.Rims = (Rims)item;
-                }
-                else if (item is Nitro)
-                {
-                    carF.Nitro = (Nitro)item;
-                }
-                else if (item is Engine)
-                {
-                    carF.Engine = (Engine)item;
-                }
-                else if (item is Break)
-                {
-                    carF.Break = (Break)item;
-                }
-                else if (item is Exhaust)
-                {
-                    carF.Exhaust = (Exhaust)item;
-                }
-                else if (item is Tyres)
-                {
-                    carF.Tyres = (Tyres)item;
-                }
+                carF.Spoiler = (Spoiler)item;
             }
-            else
+            else if (item is Rims)
             {
-                switch(type)
-                {
-                    case "Spoilers":
-                        carF.Spoiler = null;
-                        carF.SpoilerId = null;
-                        break;
-                    case "Rims":
-                        carF.Rims = null;
-                        carF.RimsId = null;
-                        break;
-                    case "Nitros":
-                        carF.Nitro = null;
-                        carF.NitroId = null;
-                        break;
-                    case "Engines":
-                        carF.Engine = null;
-                        carF.EngineId = null;
-                        break;
-                    case "Breaks":
-                        carF.Break = null;
-                        carF.BreakId = null;
-                        break;
-                    case "Exhausts":
-                        carF.Exhaust = null;
-                        carF.ExhaustId = null;
-                        break;
-                    case "Tyres":
-                        carF.Tyres = null;
-                        carF.TyresId = null;
-                        break;
-                }
+                carF.Rims = (Rims)item;
             }
-            
+            else if (item is Nitro)
+            {
+                carF.Nitro = (Nitro)item;
+            }
+            else if (item is Engine)
+            {
+                carF.Engine = (Engine)item;
+            }
+            else if (item is Break)
+            {
+                carF.Break = (Break)item;
+            }
+            else if (item is Exhaust)
+            {
+                carF.Exhaust = (Exhaust)item;
+            }
+            else if (item is Tyres)
+            {
+                carF.Tyres = (Tyres)item;
+            }
 
             return carF;
         }
@@ -167,6 +131,18 @@ namespace CarTuningConfigurator
             }
 
             return isUpdate;
+        }
+
+        public string[] SetAdditionalLabels(Car initialCar, Car finalCar)
+        {
+            string[] stats = new string[5];
+            stats[0] = finalCar.TopSpeed > initialCar.TopSpeed ? $"+{finalCar.TopSpeed - initialCar.TopSpeed}" : $"{finalCar.TopSpeed - initialCar.TopSpeed}";
+            stats[1] = finalCar.BreakingForce > initialCar.BreakingForce ? $"+{finalCar.BreakingForce - initialCar.BreakingForce}" : $"{finalCar.BreakingForce - initialCar.BreakingForce}";
+            stats[2] = finalCar.Acceleration < initialCar.Acceleration ? $"{finalCar.Acceleration - initialCar.Acceleration}" : $"+{finalCar.Acceleration - initialCar.Acceleration}";
+            stats[3] = finalCar.nitroPower > initialCar.nitroPower ? $"+{finalCar.nitroPower - initialCar.nitroPower}" : $"{finalCar.nitroPower - initialCar.nitroPower}";
+            stats[4] = finalCar.Hp > initialCar.Hp ? $"+{finalCar.Hp - initialCar.Hp}" : $"{finalCar.Hp - initialCar.Hp}";
+
+            return stats;
         }
 
         public void SaveToDatabase(Car car)

@@ -10,7 +10,7 @@ namespace CarTuningConfigurator
     public class Exhaust : TuningItem
     {
         [Column("exhaust_id")]
-        public int ExhaustId { get; set; }
+        public int? ExhaustId { get; set; }
         public int ImpactNitro { get; set; }
 
         public Exhaust(int impactNitro)
@@ -26,5 +26,7 @@ namespace CarTuningConfigurator
             Price = price;
             ImpactNitro = impactNitro;
         }
+
+        public Exhaust() { }
     }
 }

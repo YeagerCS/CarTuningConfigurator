@@ -9,7 +9,7 @@ namespace CarTuningConfigurator
     public class TuningItem
     {
         public string? Name {  get; set; }
-        public int Level {  get; set; }
+        public int? Level {  get; set; }
         public double Price {  get; set; }
 
         public TuningItem(string? name, int level, double price)

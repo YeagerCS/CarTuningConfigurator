@@ -10,9 +10,9 @@ namespace CarTuningConfigurator
     public class Rims : TuningItem
     {
         [Column("Rims_id")]
-        public int RimsId { get; set; }
-        public string Type { get; set; }
-        public string Color { get; set; }
+        public int? RimsId { get; set; }
+        public string? Type { get; set; }
+        public string? Color { get; set; }
 
         public Rims(string Type, string Color)
         {
@@ -20,6 +20,7 @@ namespace CarTuningConfigurator
             this.Color = Color;
         }
 
+        public Rims() { }
         public Rims(int id, string name, int level, double price, string type, string color) 
         {
             RimsId = id;

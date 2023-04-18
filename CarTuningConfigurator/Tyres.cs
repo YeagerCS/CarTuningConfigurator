@@ -10,8 +10,8 @@ namespace CarTuningConfigurator
     public class Tyres : TuningItem
     {
         [Column("tyres_id")]
-        public int TyresId { get; set; }
-        public string Type { get; set; }
+        public int? TyresId { get; set; }
+        public string? Type { get; set; }
         public int ImpactBreakingForce { get; set; }
         public int ImpactAcceleration { get; set; }
 
@@ -21,6 +21,8 @@ namespace CarTuningConfigurator
             ImpactBreakingForce = impactBreakingForce;
             ImpactAcceleration = impactAcceleration;
         }
+
+        public Tyres() { }
 
         public Tyres(int id, string name, int level, double price, string type, int impactBreakingForce, int impactAcceleration) 
         {

@@ -60,18 +60,23 @@ namespace CarTuningConfigurator
         public CTCView(string path, Car car, string carBrand, string carModel)
         {
             InitializeComponent();
+            controller = new CTCController();
             ResizeMode = ResizeMode.NoResize;
             carF = car;
+            if (carF.Hp == 0)
+            {
+                carF.Hp = controller.GetDefaultCarModel(carF.Brand).Hp;
+            }
             Uri uri = new Uri(path, UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);
             selectedCarImage.Source = imageBItmap;
             lblBrandModel.Content = carBrand + " " + carModel;
-            controller = new CTCController();
             Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
 
             isUpdate = controller.ModifyLabels(ref labels, carF);
             DefineStats();
             lblPrice.Content += $"{Math.Round(carF.Price, 2)}$";
+            
             InitializeColor();
             FillListBox(stats);
         }
@@ -176,12 +181,49 @@ namespace CarTuningConfigurator
 
         private void Window_DataChanged(object? sender, (Dictionary<string, double> impacts, TuningItem? item, string type) e)
         {
+            BrushConverter converter = new BrushConverter();
+            Car previousCar = (Car)carF.Clone();
             carF = controller.ApplyTuningItemToCar(e.impacts, e.item, carF, e.type);
             object[] elems = controller.CalculatePriceAndStats(carF);
             carF = (Car) elems[1];
             double price = (double) elems[0];
             carF.Price = Math.Round(price, 2);
             Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
+            Label[] modifiedLables = { lblTopspeed, lblBreakingForce, lblAcceleration, lblNitroPower, lblHorsePower };
+
+
+            string[] statImprovement = controller.SetAdditionalLabels(previousCar, carF);
+
+            int j = 0;
+            foreach(Label lbl in modifiedLables)
+            {
+                lbl.Content = statImprovement[j];
+                if (statImprovement[j].StartsWith("+") && j != 2)
+                {
+                    lbl.Foreground = (Brush) converter.ConvertFromString("Green");
+                } 
+                else if(j == 2)
+                {
+                    if (statImprovement[j].StartsWith("+"))
+                    {
+                        lbl.Foreground = (Brush)converter.ConvertFromString("Red");
+                    }
+                    else
+                    {
+                        lbl.Foreground = (Brush)converter.ConvertFromString("Green");
+                    }
+                }
+                else
+                {
+                    lbl.Foreground = (Brush)converter.ConvertFromString("Red");
+                }
+                j++;
+            }
+
+            if(carF.Hp == 0)
+            {
+                carF.Hp = controller.GetDefaultCarModel(carF.Brand).Hp;
+            }
 
             controller.ModifyLabels(ref labels, carF);
             DefineStats();
