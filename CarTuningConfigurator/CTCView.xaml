@@ -10,7 +10,7 @@
         <Polygon Stroke="Black" Fill="Black" Margin="830,31,30,353" Height="70" Width="70" Points="0, 0 100, 0 100, 100 0, 100" MouseDown="Polygon_MouseDown" x:Name="plyColor"/>
         <ListBox HorizontalAlignment="Left" Height="288" Margin="16,74,0,0" VerticalAlignment="Top" Width="233" FontSize="18" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="lbxStats"/>
         <Button Content="Submit" HorizontalAlignment="Left" Height="35" Margin="762,389,0,0" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
-        <Image HorizontalAlignment="Left" Height="243" Margin="383,94,0,0" VerticalAlignment="Top" Width="384" Source="/car1.jpg" x:Name="selectedCarImage"/>
+        <Image HorizontalAlignment="Left" Height="243" Margin="383,94,0,0" VerticalAlignment="Top" Width="384" Source="/images/car1.jpg" x:Name="selectedCarImage"/>
 
         <Button Content="Rims" HorizontalAlignment="Left" Height="35" Margin="422,232,0,0" VerticalAlignment="Top" Width="102" x:Name="btnRims" Click="btnRims_Click"/>
         <Button Content="Engine" HorizontalAlignment="Left" Height="35" Margin="570,280,0,0" VerticalAlignment="Top" Width="108" x:Name="btnEngine" Click="btnEngine_Click"/>

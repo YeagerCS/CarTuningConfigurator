@@ -20,6 +20,7 @@
     <None Remove="images\car2.jpg" />
     <None Remove="images\car3.jpg" />
     <None Remove="images\car4.jpg" />
+    <None Remove="images\car5.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +37,9 @@
 
   <ItemGroup>
     <Content Include="images\car2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\car5.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
