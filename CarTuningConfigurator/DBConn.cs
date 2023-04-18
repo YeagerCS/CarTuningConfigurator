@@ -11,14 +11,14 @@ namespace CarTuningConfigurator
     public class DBContext : DbContext
     {
 
-        public DbSet<Break> Breaks { get; set; }
-        public DbSet<Rims> Rims { get; set; }
-        public DbSet<Tyres> Tyres { get; set; }
-        public DbSet<Engine> Engines { get; set; }
+        public DbSet<Break?> Breaks { get; set; }
+        public DbSet<Rims?> Rims { get; set; }
+        public DbSet<Tyres?> Tyres { get; set; }
+        public DbSet<Engine?> Engines { get; set; }
         public DbSet<Car> Cars { get; set; }
-        public DbSet<Spoiler> Spoilers { get; set; }
-        public DbSet<Nitro> Nitros { get; set; }
-        public DbSet<Exhaust> Exhausts { get; set; }
+        public DbSet<Spoiler?> Spoilers { get; set; }
+        public DbSet<Nitro?> Nitros { get; set; }
+        public DbSet<Exhaust?> Exhausts { get; set; }
 
 
 
@@ -29,14 +29,14 @@ namespace CarTuningConfigurator
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Break>().ToTable(nameof(Break).ToLower());
-            modelBuilder.Entity<Rims>().ToTable(nameof(Rims).ToLower());
-            modelBuilder.Entity<Tyres>().ToTable(nameof(Tyres).ToLower());
-            modelBuilder.Entity<Engine>().ToTable(nameof(Engine).ToLower());
-            modelBuilder.Entity<Spoiler>().ToTable(nameof(Spoiler).ToLower());
+            modelBuilder.Entity<Break?>().ToTable(nameof(Break).ToLower());
+            modelBuilder.Entity<Rims?>().ToTable(nameof(Rims).ToLower());
+            modelBuilder.Entity<Tyres?>().ToTable(nameof(Tyres).ToLower());
+            modelBuilder.Entity<Engine?>().ToTable(nameof(Engine).ToLower());
+            modelBuilder.Entity<Spoiler?>().ToTable(nameof(Spoiler).ToLower());
             modelBuilder.Entity<Car>().ToTable(nameof(Car).ToLower());
-            modelBuilder.Entity<Nitro>().ToTable(nameof(Nitro).ToLower());
-            modelBuilder.Entity<Exhaust>().ToTable(nameof(Exhaust).ToLower());
+            modelBuilder.Entity<Nitro?>().ToTable(nameof(Nitro).ToLower());
+            modelBuilder.Entity<Exhaust?>().ToTable(nameof(Exhaust).ToLower());
         }
 
         public DBContext()

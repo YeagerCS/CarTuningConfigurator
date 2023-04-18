@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -71,7 +72,7 @@ namespace CarTuningConfigurator
             isUpdate = controller.ModifyLabels(ref labels, carF);
             DefineStats();
             lblPrice.Content += $"{Math.Round(carF.Price, 2)}$";
-
+            InitializeColor();
             FillListBox(stats);
         }
 
@@ -173,9 +174,9 @@ namespace CarTuningConfigurator
         }
 
 
-        private void Window_DataChanged(object? sender, (Dictionary<string, double> impacts, TuningItem item, string type) e)
+        private void Window_DataChanged(object? sender, (Dictionary<string, double> impacts, TuningItem? item, string type) e)
         {
-            carF = controller.ApplyTuningItemToCar(e.impacts, e.item, carF);
+            carF = controller.ApplyTuningItemToCar(e.impacts, e.item, carF, e.type);
             object[] elems = controller.CalculatePriceAndStats(carF);
             carF = (Car) elems[1];
             double price = (double) elems[0];
@@ -191,5 +192,81 @@ namespace CarTuningConfigurator
         {
             MessageBox.Show(" Topspeed in km/h\n Breaking force in Power\n Acceleration in Time for 0-100km/h\n Nitro in Power\n HP in Horsepower", "Stat Infos");
         }
+
+        private void InitializeColor()
+        {
+            BrushConverter converter = new BrushConverter();
+
+            plyColor.Fill = (Brush)converter.ConvertFromString(carF.Color);
+        }
+
+        private void Polygon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            BrushConverter converter = new BrushConverter();
+            Window dialog = new Window();
+
+            ListBox listbox = new ListBox();
+            listbox.Items.Add("Black");
+            listbox.Items.Add("Red");
+            listbox.Items.Add("White");
+            listbox.Items.Add("Blue");
+            listbox.Items.Add("Green");
+            listbox.Items.Add("Silver");
+            listbox.Items.Add("Yellow");
+            listbox.Items.Add("Lime");
+            listbox.Items.Add("Lightblue");
+            listbox.Items.Add("Orange");
+            listbox.Items.Add("Brown");
+            listbox.FontSize = 14;
+            listbox.Name = "lbxColor";
+
+
+            Button button = new Button();
+            button.Content = "Select Color";
+            button.Height = 35;
+            button.Width = 130;
+            button.VerticalAlignment = VerticalAlignment.Bottom;
+            button.Click += SelectColor_Click;
+
+
+            Grid grid = new Grid();
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.Children.Add(listbox);
+            grid.Children.Add(button);
+            Grid.SetColumn(listbox, 0);
+            Grid.SetColumn(button, 1);
+            grid.Background = (Brush)converter.ConvertFromString(carF.Color);
+
+            listbox.SelectionChanged += Listbox_SelectionChanged;
+
+
+            dialog.Content = grid;
+
+            dialog.Title = "Choose Color";
+            dialog.Width = 600;
+            dialog.Height = 340;
+            dialog.ResizeMode = ResizeMode.NoResize;
+            dialog.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            dialog.ShowDialog();
+
+            
+
+            void Listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                grid.Background = (Brush)converter.ConvertFromString(listbox.SelectedItem.ToString());
+            }
+
+            void SelectColor_Click(object sender, RoutedEventArgs e)
+            {
+                carF.Color = listbox.SelectedItem.ToString();
+                dialog.Close();
+                InitializeColor();
+            }
+
+        }
+
+        
     }
 }

@@ -21,7 +21,7 @@ namespace CarTuningConfigurator
     {
         List<TuningItem> TuningItems;
         TuningController controller;
-        public event EventHandler<(Dictionary<string, double> impacts, TuningItem item, string type)> DataChanged;
+        public event EventHandler<(Dictionary<string, double> impacts, TuningItem? item, string type)> DataChanged;
         Dictionary<string, int> impacts;
 
         string current = "";
@@ -138,10 +138,16 @@ namespace CarTuningConfigurator
                         impacts["ImpactVelocity"] = spoiler[index].ImpactVelocity;
                         impacts["Price"] = spoiler[index].Price;
                         break;
+                    case "Rims":
+                        break;
                     default:
                         throw new NotImplementedException("This shouldn't happen");
                 }
                 DataChanged?.Invoke(this, (impacts, TuningItems[index], current));
+            }
+            else
+            {
+                DataChanged?.Invoke(this, (impacts, null, current));
             }
         }
     }
