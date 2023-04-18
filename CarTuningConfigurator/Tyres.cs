@@ -34,5 +34,17 @@ namespace CarTuningConfigurator
             ImpactBreakingForce = impactBreakingForce;
             ImpactAcceleration = impactAcceleration;
         }
+
+        public override string ToString()
+        {
+            if(Name != "Default")
+            {
+                return $"{Name} | {Type}";
+            }
+            else
+            {
+                return $"{Name}";
+            }
+        }
     }
 }

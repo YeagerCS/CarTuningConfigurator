@@ -40,5 +40,17 @@ namespace CarTuningConfigurator
             ImpactAcceleration = impactAcceleration;
             ImpactHorsePower = impactHorsePower;
         }
+
+        public override string ToString()
+        {
+            if(Name != "Default")
+            {
+                return $"{Name} | {Cylinder}";
+            }
+            else
+            {
+                return Name;
+            }
+        }
     }
 }

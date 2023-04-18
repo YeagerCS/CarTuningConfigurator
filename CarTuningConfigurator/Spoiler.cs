@@ -41,5 +41,17 @@ namespace CarTuningConfigurator
             Price = price;
             ImpactVelocity = impactVelocity;
         }
+
+        public override string ToString()
+        {
+            if(Name != "None")
+            {
+                return $"{Name} | {Type}";
+            }
+            else
+            {
+                return $"{Name}";
+            }
+        }
     }
 }
