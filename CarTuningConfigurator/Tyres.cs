@@ -13,9 +13,9 @@ namespace CarTuningConfigurator
         public int? TyresId { get; set; }
         public string? Type { get; set; }
         public int ImpactBreakingForce { get; set; }
-        public int ImpactAcceleration { get; set; }
+        public double ImpactAcceleration { get; set; }
 
-        public Tyres(string type, int impactBreakingForce, int impactAcceleration)
+        public Tyres(string type, int impactBreakingForce, double impactAcceleration)
         {
             Type = type;
             ImpactBreakingForce = impactBreakingForce;
@@ -24,7 +24,7 @@ namespace CarTuningConfigurator
 
         public Tyres() { }
 
-        public Tyres(int id, string name, int level, double price, string type, int impactBreakingForce, int impactAcceleration) 
+        public Tyres(int id, string name, int level, double price, string type, int impactBreakingForce, double impactAcceleration) 
         {
             TyresId = id;
             Name = name;

@@ -138,7 +138,7 @@ namespace CarTuningConfigurator
             string[] stats = new string[5];
             stats[0] = finalCar.TopSpeed > initialCar.TopSpeed ? $"+{finalCar.TopSpeed - initialCar.TopSpeed}" : $"{finalCar.TopSpeed - initialCar.TopSpeed}";
             stats[1] = finalCar.BreakingForce > initialCar.BreakingForce ? $"+{finalCar.BreakingForce - initialCar.BreakingForce}" : $"{finalCar.BreakingForce - initialCar.BreakingForce}";
-            stats[2] = finalCar.Acceleration < initialCar.Acceleration ? $"{finalCar.Acceleration - initialCar.Acceleration}" : $"+{finalCar.Acceleration - initialCar.Acceleration}";
+            stats[2] = finalCar.Acceleration < initialCar.Acceleration ? $"{Math.Round(finalCar.Acceleration - initialCar.Acceleration, 1)}" : $"+{Math.Round(finalCar.Acceleration - initialCar.Acceleration, 1)}";
             stats[3] = finalCar.nitroPower > initialCar.nitroPower ? $"+{finalCar.nitroPower - initialCar.nitroPower}" : $"{finalCar.nitroPower - initialCar.nitroPower}";
             stats[4] = finalCar.Hp > initialCar.Hp ? $"+{finalCar.Hp - initialCar.Hp}" : $"{finalCar.Hp - initialCar.Hp}";
 

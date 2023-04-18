@@ -21,6 +21,8 @@
     <None Remove="images\car3.jpg" />
     <None Remove="images\car4.jpg" />
     <None Remove="images\car5.jpg" />
+    <None Remove="images\car6.jpg" />
+    <None Remove="images\car7.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +42,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images\car5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\car6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\car7.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

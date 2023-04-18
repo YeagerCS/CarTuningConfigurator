@@ -186,6 +186,7 @@ namespace CarTuningConfigurator
             carF = controller.ApplyTuningItemToCar(e.impacts, e.item, carF, e.type);
             object[] elems = controller.CalculatePriceAndStats(carF);
             carF = (Car) elems[1];
+            carF.Acceleration = carF.Acceleration < 0.6 ? 0.6 : carF.Acceleration;
             double price = (double) elems[0];
             carF.Price = Math.Round(price, 2);
             Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
@@ -258,7 +259,18 @@ namespace CarTuningConfigurator
             listbox.Items.Add("Lime");
             listbox.Items.Add("Lightblue");
             listbox.Items.Add("Orange");
-            listbox.Items.Add("Brown");
+            listbox.Items.Add("SaddleBrown");
+            listbox.Items.Add("Aquamarine");
+            listbox.Items.Add("Purple");
+            listbox.Items.Add("Navy");
+            listbox.Items.Add("Aqua");
+            listbox.Items.Add("DarkRed");
+            listbox.Items.Add("GhostWhite");
+            listbox.Items.Add("Plum");
+            listbox.Items.Add("Bisque");
+            listbox.Items.Add("MediumVioletRed");
+            listbox.Items.Add("SlateGray");
+            listbox.Items.Add("Teal");
             listbox.FontSize = 14;
             listbox.Name = "lbxColor";
 
