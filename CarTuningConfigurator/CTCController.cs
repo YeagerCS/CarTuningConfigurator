@@ -11,14 +11,14 @@ namespace CarTuningConfigurator
 {
     public class CTCController
     {
-        private CTCModel model;
+        public CTCModel model;
         private List<TuningItem?> tuningItems;
 
         public CTCController()
         {
             model = new CTCModel();
         }
-        public Car ApplyTuningItemToCar(Dictionary<string, double> impacts, TuningItem? item, Car carF, string type)
+        public Car ApplyTuningItemToCar(TuningItem? item, Car carF, string type)
         {
             if (item is Spoiler)
             {

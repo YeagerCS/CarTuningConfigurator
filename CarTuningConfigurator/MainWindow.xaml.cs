@@ -30,7 +30,7 @@ namespace CarTuningConfigurator
         public MainWindow(bool configure)
         {
             model = new CTCModel(true);
-            isConfig = true;
+            isConfig = configure;
             InitializeComponent();
             Uri uri = new Uri(model.Cars[index].Image, UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);

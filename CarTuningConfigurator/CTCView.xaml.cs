@@ -77,8 +77,13 @@ namespace CarTuningConfigurator
 
             isUpdate = controller.ModifyLabels(ref labels, carF);
             DefineStats();
-            
-            
+
+            lblPrice.Content += $"{Math.Round(carF.Price, 2)}$";
+            if (isUpdate)
+            {
+                lblPrice.Content = $"Value: {Math.Round(carF.Price, 2)}$";
+            }
+
             
             InitializeColor();
             FillListBox(stats);
@@ -102,14 +107,10 @@ namespace CarTuningConfigurator
                 lbxStats.Items.Add(stat);
             }
 
-            if (isUpdate)
-            {
-                lblPrice.Content = "Value: " + $"{Math.Round(carF.Price, 2)}$";
-            }
-            else
-            {
-                lblPrice.Content += $"{Math.Round(carF.Price, 2)}$";
-            }
+
+        
+            lblPrice.Content = !isUpdate ? $"Price: {Math.Round(carF.Price, 2)}$" : $"Value: {Math.Round(carF.Price, 2)}$";
+
 
         }
 
@@ -193,7 +194,7 @@ namespace CarTuningConfigurator
         {
             BrushConverter converter = new BrushConverter();
             Car previousCar = (Car)carF.Clone();
-            carF = controller.ApplyTuningItemToCar(e.impacts, e.item, carF, e.type);
+            carF = controller.ApplyTuningItemToCar(e.item, carF, e.type);
             object[] elems = controller.CalculatePriceAndStats(carF);
             carF = (Car) elems[1];
             carF.Acceleration = carF.Acceleration < 0.6 ? 0.6 : carF.Acceleration;

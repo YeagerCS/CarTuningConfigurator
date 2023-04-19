@@ -28,6 +28,7 @@ namespace CarTuningConfigurator
 
         public Engine() { }
 
+
         public Engine(int id, string name, string type, string cylinder, int level, double price, int impactVelocity, double impactAcceleration, int impactHorsePower)
         {
             EngineId = id;
