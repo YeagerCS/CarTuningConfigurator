@@ -107,8 +107,6 @@ namespace CarTuningConfigurator
                 lbxStats.Items.Add(stat);
             }
 
-
-        
             lblPrice.Content = !isUpdate ? $"Price: {Math.Round(carF.Price, 2)}$" : $"Value: {Math.Round(carF.Price, 2)}$";
 
 
