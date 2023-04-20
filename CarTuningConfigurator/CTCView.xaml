@@ -39,7 +39,7 @@
             <Label Content="" HorizontalAlignment="Left" Margin="249,139,0,0" VerticalAlignment="Top" x:Name="lblAcceleration" BorderBrush="Black" BorderThickness="1"/>
             <Label Content="" HorizontalAlignment="Left" Margin="249,166,0,0" VerticalAlignment="Top" x:Name="lblNitroPower" BorderBrush="Black" BorderThickness="1"/>
             <Label Content="" HorizontalAlignment="Left" Margin="249,193,0,0" VerticalAlignment="Top" x:Name="lblHorsePower" BorderBrush="Black" BorderThickness="1"/>
-            <TextBox HorizontalAlignment="Left" Height="36" Margin="267,370,0,0" TextWrapping="Wrap" Text="Ferrari La Ferrari" FontFamily="Sitka Small Semibold" VerticalAlignment="Top" Width="369" FontSize="26" x:Name="lblBrandModel" BorderBrush="White"/>
+            <TextBox HorizontalAlignment="Left" Height="36" Margin="227,384,0,0" TextWrapping="Wrap" Text="Ferrari 458 Italia" FontFamily="Sitka Small Semibold" VerticalAlignment="Top" Width="478" FontSize="26" x:Name="lblBrandModel" BorderBrush="White"/>
         </Grid>
     </Viewbox>
 </Window>

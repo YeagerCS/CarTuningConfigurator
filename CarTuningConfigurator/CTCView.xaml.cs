@@ -21,6 +21,8 @@ namespace CarTuningConfigurator
         string[] stats = new string[5];
         CTCController controller;
         private bool isUpdate = false;
+        private Regex regex = new Regex("^[a-zA-Z0-9_.-]+\\s[a-zA-Z0-9_.-]+(\\s[a-zA-Z0-9_.-]+)?$");
+
 
         public CTCView()
         {
@@ -32,11 +34,10 @@ namespace CarTuningConfigurator
         {
             if (isUpdate)
             {
-                Regex regex = new Regex("^[a-zA-Z]{1,10}\\s[a-zA-Z]{1,10}$");
-                if (regex.IsMatch(lblBrandModel.Text))
+                if (regex.IsMatch(lblBrandModel.Text) && lblBrandModel.Text.Length <= 30)
                 {
                     carF.Brand = lblBrandModel.Text.Split(' ')[0];
-                    carF.Model = lblBrandModel.Text.Split(' ')[1];
+                    carF.Model = lblBrandModel.Text.Split(' ').Length > 2 ? lblBrandModel.Text.Split(' ')[1] + " " + lblBrandModel.Text.Split(' ')[2] : lblBrandModel.Text.Split(' ')[1];
 
                     controller.UpdateDatabase(carF);
                     controller.ShowMessageWindow("Success", "Successfully Updated", fontsize: 25);
@@ -46,18 +47,17 @@ namespace CarTuningConfigurator
                 }
                 else
                 {
-                    controller.ShowMessageWindow("Invalid brand and model name", "Please enter a valid brand and model name ('Brand Model'), max. 10 symbols for each", fontsize: 20, backgroundColor: "OrangeRed");
+                    controller.ShowMessageWindow("Invalid brand and model name", "Please enter a valid brand and model name ('Brand Model') or ('Brand ModelPart1 Part2), max. 30 symbols", fontsize: 18, backgroundColor: "OrangeRed");
                 }
                 
             }
             else
             {
 
-                Regex regex = new Regex("^[a-zA-Z]{1,10}\\s[a-zA-Z]{1,10}$");
-                if (regex.IsMatch(lblBrandModel.Text))
+                if (regex.IsMatch(lblBrandModel.Text) && lblBrandModel.Text.Length <= 30)
                 {
                     carF.Brand = lblBrandModel.Text.Split(' ')[0];
-                    carF.Model = lblBrandModel.Text.Split(' ')[1];
+                    carF.Model = lblBrandModel.Text.Split(' ').Length > 2 ? lblBrandModel.Text.Split(' ')[1] + " " + lblBrandModel.Text.Split(' ')[2] : lblBrandModel.Text.Split(' ')[1];
                     controller.SaveToDatabase(carF);
                     controller.ShowMessageWindow("Success", "Successfully Inserted", fontsize: 25);
                     MainWindow mainWindow = new MainWindow();
