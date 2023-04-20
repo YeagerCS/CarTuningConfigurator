@@ -24,6 +24,8 @@
     <None Remove="images\car5.jpg" />
     <None Remove="images\car6.jpg" />
     <None Remove="images\car7.jpg" />
+    <None Remove="images\car8.jpg" />
+    <None Remove="images\car9.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +53,15 @@
     <Content Include="images\car7.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\car8.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\car9.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+	  <Content Include="images\car10.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
   </ItemGroup>
 
 </Project>

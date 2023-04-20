@@ -26,7 +26,7 @@
     </Window.Resources>
     <Viewbox MinHeight="430" MinWidth="800" Stretch="Uniform" UseLayoutRounding="True" SnapsToDevicePixels="True" >
         <Grid>
-            <Image HorizontalAlignment="Left" Height="218" Margin="162,88,0,0" VerticalAlignment="Top" Width="450" x:Name="selectedCarImage" MouseDown="selectedCarImage_MouseDown"/>
+            <Image HorizontalAlignment="Left" Height="218" Margin="162,88,0,0" VerticalAlignment="Top" Width="450" x:Name="selectedCarImage" MouseDown="selectedCarImage_MouseDown" Source="images/car9.jpg"/>
             <Polygon Points="0,0 60,40, 0,80" Stroke="Black" Fill="Black" Margin="693,158,10,131" x:Name="triangleRight" MouseDown="triangleRight_MouseDown"/>
             <Polygon Points="60,0 0,40, 60,80" Stroke="Black" Fill="Black" Margin="43,158,625,131" x:Name="triangleLeft" MouseDown="triangleLeft_MouseDown"/>
 
