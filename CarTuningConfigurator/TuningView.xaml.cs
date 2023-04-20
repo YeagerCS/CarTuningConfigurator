@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace CarTuningConfigurator
 {
@@ -21,8 +14,8 @@ namespace CarTuningConfigurator
     {
         List<TuningItem> TuningItems;
         TuningController controller;
-        public event EventHandler<(Dictionary<string, double> impacts, TuningItem? item, string type)> DataChanged;
-        Dictionary<string, int> impacts;
+        public event EventHandler<(TuningItem? item, string type)> DataChanged;
+        CTCController ctcController;
 
         string current = "";
         public TuningView()
@@ -40,7 +33,7 @@ namespace CarTuningConfigurator
             lblTitle.Content = item;
             TuningItems = controller.InsertContent(item);
             controller.AddToListBox(lbxSpecs, TuningItems);
-            impacts = new Dictionary<string, int>();
+            ctcController = new CTCController();
         }
 
         private void lbxSpecs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -99,7 +92,6 @@ namespace CarTuningConfigurator
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var impacts = new Dictionary<string, double>();
             int index = lbxSpecs.SelectedIndex;
             if(index != -1)
             {
@@ -107,43 +99,34 @@ namespace CarTuningConfigurator
                 {
                     case "Breaks":
                         List<Break> breaks = TuningItems.Cast<Break>().ToList();
-                        impacts["ImpactBreakingForce"] = breaks[index].ImpactBreakingForce;
-                        impacts["Price"] = breaks[index].Price;
                         break;
                     case "Nitros":
                         List<Nitro> nitros = TuningItems.Cast<Nitro>().ToList();
-                        impacts["ImpactNitro"] = nitros[index].ImpactNitro;
-                        impacts["Price"] = nitros[index].Price;
                         break;
                     case "Engines":
                         List<Engine> engines = TuningItems.Cast<Engine>().ToList();
-                        impacts["ImpactAcceleration"] = engines[index].ImpactAcceleration;
-                        impacts["ImpactHorsePower"] = engines[index].ImpactHorsePower;
-                        impacts["ImpactVelocity"] = engines[index].ImpactVelocity;
-                        impacts["Price"] = engines[index].Price;
                         break;
                     case "Tyres":
                         List<Tyres> tyres = TuningItems.Cast<Tyres>().ToList();
-                        impacts["ImpactAcceleration"] = tyres[index].ImpactAcceleration;
-                        impacts["ImpactBreakingForce"] = tyres[index].ImpactBreakingForce;
-                        impacts["Price"] = tyres[index].Price;
                         break;
                     case "Exhausts":
                         List<Exhaust> exhausts = TuningItems.Cast<Exhaust>().ToList();
-                        impacts["ImpactNitro"] = exhausts[index].ImpactNitro;
-                        impacts["Price"] = exhausts[index].Price;
                         break;
                     case "Spoilers":
                         List<Spoiler> spoiler = TuningItems.Cast<Spoiler>().ToList();
-                        impacts["ImpactVelocity"] = spoiler[index].ImpactVelocity;
-                        impacts["Price"] = spoiler[index].Price;
                         break;
                     case "Rims":
                         break;
                     default:
-                        throw new NotImplementedException("This shouldn't happen");
+                        throw new ArgumentException(current + " is not a valid argument");
+
+                    
                 }
-                DataChanged?.Invoke(this, (impacts, TuningItems[index], current));
+                DataChanged?.Invoke(this, (TuningItems[index], current));
+            }
+            else
+            {
+                ctcController.ShowMessageWindow("Error", "Please choose an item", fontsize: 22, backgroundColor: "OrangeRed");
             }
         }
     }

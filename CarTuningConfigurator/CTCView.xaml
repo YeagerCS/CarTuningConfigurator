@@ -22,7 +22,7 @@
         <Label Content="Stats" HorizontalAlignment="Left" Height="36" Margin="16,38,0,0" VerticalAlignment="Top" Width="233" HorizontalContentAlignment="Center" BorderBrush="Gray" BorderThickness="1" FontWeight="Bold" FontSize="18"/>
         <Label Content="Price: " HorizontalAlignment="Left" Height="43" Margin="671,341,0,0" VerticalAlignment="Top" Width="226" FontSize="22" Foreground="#666666" x:Name="lblPrice"/>
         <Button Content="Back to Home" HorizontalAlignment="Left" Height="35" Margin="35,389,0,0" VerticalAlignment="Top" Width="128" Click="garageButton_Click"/>
-        <Label Content="Ferrari La Ferrari " HorizontalAlignment="Left" Height="46" Margin="288,351,0,0" VerticalAlignment="Top" Width="369" FontFamily="Sitka Small Semibold" FontSize="26" x:Name="lblBrandModel"/>
+
         <Label Content="🛈" HorizontalAlignment="Left" Height="43" Margin="216,35,0,0" VerticalAlignment="Top" Width="33" FontSize="24" MouseDown="Label_MouseDown"/>
         <Label Content="" HorizontalAlignment="Left" Margin="288,189,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblTyres"/>
         <Label Content="" HorizontalAlignment="Left" Margin="293,68,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblExhaust"/>
@@ -36,5 +36,6 @@
         <Label Content="" HorizontalAlignment="Left" Margin="249,139,0,0" VerticalAlignment="Top" x:Name="lblAcceleration" BorderBrush="Black" BorderThickness="1"/>
         <Label Content="" HorizontalAlignment="Left" Margin="249,166,0,0" VerticalAlignment="Top" x:Name="lblNitroPower" BorderBrush="Black" BorderThickness="1"/>
         <Label Content="" HorizontalAlignment="Left" Margin="249,193,0,0" VerticalAlignment="Top" x:Name="lblHorsePower" BorderBrush="Black" BorderThickness="1"/>
+        <TextBox HorizontalAlignment="Left" Height="36" Margin="267,370,0,0" TextWrapping="Wrap" Text="Ferrari La Ferrari" FontFamily="Sitka Small Semibold" VerticalAlignment="Top" Width="369" FontSize="26" x:Name="lblBrandModel" BorderBrush="White"/>
     </Grid>
 </Window>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace CarTuningConfigurator
 {
@@ -100,6 +101,59 @@ namespace CarTuningConfigurator
             objs[1] = car;
 
             return objs;
+        }
+
+        public void ShowMessageWindow(string title, string massage, string buttonText = "Ok", int fontsize = 35, string font = "Trebuchet MS", string backgroundColor = "Lime")
+        {
+
+            var dialog = new Window
+            {
+                Title = title,
+                Width = 400,
+                Height = 200,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(backgroundColor)),
+                ResizeMode = ResizeMode.NoResize
+            };
+
+            var stackPanel = new StackPanel
+            {
+                Margin = new Thickness(10),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Orientation = Orientation.Vertical
+            };
+
+            var messageLabel = new TextBlock
+            {
+                Text = massage,
+                FontSize = fontsize,
+                FontFamily = new FontFamily(font),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Foreground = new SolidColorBrush(Colors.White),
+                TextWrapping = TextWrapping.Wrap,
+                MaxWidth = 300
+            };
+
+            var button = new Button
+            {
+                Content = buttonText,
+                Width = 80,
+                Height = 35,
+                Margin = new Thickness(0, 10, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Bottom
+            };
+
+            button.Click += (sender, args) => dialog.Close();
+
+            stackPanel.Children.Add(messageLabel);
+            stackPanel.Children.Add(button);
+
+            dialog.Content = stackPanel;
+
+            dialog.ShowDialog();
         }
 
         public bool ModifyLabels(ref Label[] labels, Car car)
