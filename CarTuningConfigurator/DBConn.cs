@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Windows;
+using Org.BouncyCastle.Utilities.Net;
 
 namespace CarTuningConfigurator
 {
     public class DBContext : DbContext
     {
+        public IniFile DataBaseConfiguration;
 
         public DbSet<Break?> Breaks { get; set; }
         public DbSet<Rims?> Rims { get; set; }
@@ -19,12 +22,15 @@ namespace CarTuningConfigurator
         public DbSet<Spoiler?> Spoilers { get; set; }
         public DbSet<Nitro?> Nitros { get; set; }
         public DbSet<Exhaust?> Exhausts { get; set; }
+        private string IPAddress;
+        private string password;
+        private string user;
 
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=10.195.252.88;user id=root;password=CasparBlond1200?;database=cartc;", new MySqlServerVersion(new Version(8, 0, 32)));
+            optionsBuilder.UseMySql($"server={IPAddress};user id={user};password={password};database=cartc;", new MySqlServerVersion(new Version(8, 0, 32)));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,13 +47,22 @@ namespace CarTuningConfigurator
 
         public DBContext()
         {
-            
+            DataBaseConfiguration = new IniFile("config.ini");
+            try
+            {
+                IPAddress = DataBaseConfiguration.ReadSection("IP_Address");
+                password = DataBaseConfiguration.ReadSection("Password");
+                user = DataBaseConfiguration.ReadSection("User");
+            } catch(ArgumentNullException ex)
+            {
+                ex.GetBaseException();
+            }
         }
 
 
         public MySqlConnection GetDefaultConnection()
         {
-            string connectionString = $"server=10.195.252.88;user id=root;password=CasparBlond1200?;database=cartc;";
+            string connectionString = $"server={IPAddress};user id={user};password={password};database=cartc;";
             MySqlConnection conn = null;
             try
             {
