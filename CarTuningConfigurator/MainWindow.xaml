@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CarTuningConfigurator"
         mc:Ignorable="d"
         
-        Title="Garage" Height="430" Width="800" Closed="Window_Closed">
+        Title="Garage" Height="430" Width="800" Closed="Window_Closed" MinHeight="440" MinWidth="810">
 
     <Window.Resources>
         <Storyboard x:Key="ImageTransitionin">
@@ -24,25 +24,25 @@
 
         </Storyboard>
     </Window.Resources>
+    <Viewbox MinHeight="430" MinWidth="800" Stretch="Uniform" UseLayoutRounding="True" SnapsToDevicePixels="True" >
+        <Grid>
+            <Image HorizontalAlignment="Left" Height="218" Margin="162,88,0,0" VerticalAlignment="Top" Width="450" x:Name="selectedCarImage" MouseDown="selectedCarImage_MouseDown"/>
+            <Polygon Points="0,0 60,40, 0,80" Stroke="Black" Fill="Black" Margin="693,158,10,131" x:Name="triangleRight" MouseDown="triangleRight_MouseDown"/>
+            <Polygon Points="60,0 0,40, 60,80" Stroke="Black" Fill="Black" Margin="43,158,625,131" x:Name="triangleLeft" MouseDown="triangleLeft_MouseDown"/>
+
+            <Label Content="Price: " HorizontalAlignment="Left" Height="28" Margin="322,343,0,0" VerticalAlignment="Top" Width="60" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblPrice_Copy"/>
+            <Label Content="Ferrari La Ferrari " HorizontalAlignment="Left" Height="28" Margin="303,40,0,0" VerticalAlignment="Top" Width="256" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblBrandModel"/>
+            <Label Content="" HorizontalAlignment="Left" Height="28" Margin="381,343,0,0" VerticalAlignment="Top" Width="157" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblPrice" />
 
 
-    <Grid>
-        <Image HorizontalAlignment="Left" Height="218" Margin="162,88,0,0" VerticalAlignment="Top" Width="450" x:Name="selectedCarImage" MouseDown="selectedCarImage_MouseDown"/>
-        <Polygon Points="0,0 60,40, 0,80" Stroke="Black" Fill="Black" Margin="693,158,10,131" x:Name="triangleRight" MouseDown="triangleRight_MouseDown"/>
-        <Polygon Points="60,0 0,40, 60,80" Stroke="Black" Fill="Black" Margin="43,158,625,131" x:Name="triangleLeft" MouseDown="triangleLeft_MouseDown"/>
+            <Polygon Stroke="Black" Fill="Black" Margin="10,10,720,334" Height="70" Width="70" Points="0, 0 100, 0 100, 100 0, 100" x:Name="plyColor"/>
+            <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,255,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblHP"/>
+            <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,283,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblTopSpeed"/>
+            <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,311,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblEngineName"/>
+            <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,339,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblEngineType"/>
+            <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,367,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblEngineCylinder"/>
+            <Button Content="Back to Home" HorizontalAlignment="Left" Margin="660,345,0,0" VerticalAlignment="Top" Height="38" Width="122" Click="Button_Click"/>
 
-        <Label Content="Price: " HorizontalAlignment="Left" Height="28" Margin="322,343,0,0" VerticalAlignment="Top" Width="60" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblPrice_Copy"/>
-        <Label Content="Ferrari La Ferrari " HorizontalAlignment="Left" Height="28" Margin="303,40,0,0" VerticalAlignment="Top" Width="256" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblBrandModel"/>
-        <Label Content="" HorizontalAlignment="Left" Height="28" Margin="381,343,0,0" VerticalAlignment="Top" Width="157" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblPrice" />
-
-
-        <Polygon Stroke="Black" Fill="Black" Margin="10,10,720,334" Height="70" Width="70" Points="0, 0 100, 0 100, 100 0, 100" x:Name="plyColor"/>
-        <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,255,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblHP"/>
-        <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,283,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblTopSpeed"/>
-        <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,311,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblEngineName"/>
-        <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,339,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblEngineType"/>
-        <Label Content="" HorizontalAlignment="Left" Height="28" Margin="10,367,0,0" VerticalAlignment="Top" Width="160" FontFamily="Sitka Small Semibold" FontSize="16" x:Name="lblEngineCylinder"/>
-        <Button Content="Back to Home" HorizontalAlignment="Left" Margin="660,345,0,0" VerticalAlignment="Top" Height="38" Width="122" Click="Button_Click"/>
-
-    </Grid>
+        </Grid>
+    </Viewbox>
 </Window>

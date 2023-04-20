@@ -77,7 +77,6 @@ namespace CarTuningConfigurator
         {
             InitializeComponent();
             controller = new CTCController();
-            ResizeMode = ResizeMode.NoResize;
             carF = car;
             if (carF.Hp == 0)
             {
