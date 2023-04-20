@@ -23,6 +23,7 @@ namespace CarTuningConfigurator
         TuningController controller;
         public event EventHandler<(Dictionary<string, double> impacts, TuningItem? item, string type)> DataChanged;
         Dictionary<string, int> impacts;
+        CTCController ctcController;
 
         string current = "";
         public TuningView()
@@ -41,6 +42,7 @@ namespace CarTuningConfigurator
             TuningItems = controller.InsertContent(item);
             controller.AddToListBox(lbxSpecs, TuningItems);
             impacts = new Dictionary<string, int>();
+            ctcController = new CTCController();
         }
 
         private void lbxSpecs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -141,9 +143,15 @@ namespace CarTuningConfigurator
                     case "Rims":
                         break;
                     default:
-                        throw new NotImplementedException("This shouldn't happen");
+                        throw new ArgumentException(current + " is not a valid argument");
+
+                    
                 }
                 DataChanged?.Invoke(this, (impacts, TuningItems[index], current));
+            }
+            else
+            {
+                ctcController.ShowMessageWindow("Error", "Please choose an item", fontsize: 22, backgroundColor: "OrangeRed");
             }
         }
     }

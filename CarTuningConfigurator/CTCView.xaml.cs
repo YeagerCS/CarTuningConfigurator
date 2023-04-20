@@ -1,23 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Identity.Client;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CarTuningConfigurator
 {
@@ -43,7 +32,7 @@ namespace CarTuningConfigurator
             if (isUpdate)
             {
                 controller.UpdateDatabase(carF);
-                MessageBox.Show("Car successfully updated", "Car Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                controller.ShowMessageWindow("Success", "Successfully Updated", fontsize: 25);
                 MainWindow mainWindow = new MainWindow(true);
                 mainWindow.Show();
                 this.Close();
@@ -51,7 +40,7 @@ namespace CarTuningConfigurator
             else
             {
                 controller.SaveToDatabase(carF);
-                MessageBox.Show("Car successfully Inserted", "Car Inserted", MessageBoxButton.OK, MessageBoxImage.Information);
+                controller.ShowMessageWindow("Success", "Successfully Inserted", fontsize: 25);
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 this.Close();
