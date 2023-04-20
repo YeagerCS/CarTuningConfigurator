@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Text.RegularExpressions;
 
 namespace CarTuningConfigurator
 {
@@ -31,19 +32,43 @@ namespace CarTuningConfigurator
         {
             if (isUpdate)
             {
-                controller.UpdateDatabase(carF);
-                controller.ShowMessageWindow("Success", "Successfully Updated", fontsize: 25);
-                MainWindow mainWindow = new MainWindow(true);
-                mainWindow.Show();
-                this.Close();
+                Regex regex = new Regex("^[a-zA-Z]{1,10}\\s[a-zA-Z]{1,10}$");
+                if (regex.IsMatch(lblBrandModel.Text))
+                {
+                    carF.Brand = lblBrandModel.Text.Split(' ')[0];
+                    carF.Model = lblBrandModel.Text.Split(' ')[1];
+
+                    controller.UpdateDatabase(carF);
+                    controller.ShowMessageWindow("Success", "Successfully Updated", fontsize: 25);
+                    MainWindow mainWindow = new MainWindow(true);
+                    mainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    controller.ShowMessageWindow("Invalid brand and model name", "Please enter a valid brand and model name ('Brand Model'), max. 10 symbols for each", fontsize: 20, backgroundColor: "OrangeRed");
+                }
+                
             }
             else
             {
-                controller.SaveToDatabase(carF);
-                controller.ShowMessageWindow("Success", "Successfully Inserted", fontsize: 25);
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
+
+                Regex regex = new Regex("^[a-zA-Z]{1,10}\\s[a-zA-Z]{1,10}$");
+                if (regex.IsMatch(lblBrandModel.Text))
+                {
+                    carF.Brand = lblBrandModel.Text.Split(' ')[0];
+                    carF.Model = lblBrandModel.Text.Split(' ')[1];
+                    controller.SaveToDatabase(carF);
+                    controller.ShowMessageWindow("Success", "Successfully Inserted", fontsize: 25);
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    controller.ShowMessageWindow("Invalid brand and model name", "Please enter a valid brand and model name ('Brand Model'), max. 10 symbols for each", fontsize: 20, backgroundColor: "OrangeRed");
+                }
+                
             }
         }
 
@@ -61,7 +86,7 @@ namespace CarTuningConfigurator
             Uri uri = new Uri(path, UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);
             selectedCarImage.Source = imageBItmap;
-            lblBrandModel.Content = carBrand + " " + carModel;
+            lblBrandModel.Text = carBrand + " " + carModel;
             Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
 
             isUpdate = controller.ModifyLabels(ref labels, carF);
@@ -82,7 +107,7 @@ namespace CarTuningConfigurator
         {
             stats[0] = $"Topspeed: {carF.TopSpeed} km/h";
             stats[1] = $"Braking force: {carF.BreakingForce}";
-            stats[2] = $"Acceleration: {carF.Acceleration}s";
+            stats[2] = $"Acceleration: {Math.Round(carF.Acceleration, 2)}s";
             stats[3] = $"Nitro: {carF.nitroPower}";
             stats[4] = $"HP: {carF.Hp}";
         }
@@ -177,7 +202,7 @@ namespace CarTuningConfigurator
         }
 
 
-        private void Window_DataChanged(object? sender, (Dictionary<string, double> impacts, TuningItem? item, string type) e)
+        private void Window_DataChanged(object? sender, (TuningItem? item, string type) e)
         {
             BrushConverter converter = new BrushConverter();
             Car previousCar = (Car)carF.Clone();
@@ -189,7 +214,9 @@ namespace CarTuningConfigurator
             carF.Price = Math.Round(price, 2);
             Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
             Label[] modifiedLables = { lblTopspeed, lblBreakingForce, lblAcceleration, lblNitroPower, lblHorsePower };
+            
 
+            
 
             string[] statImprovement = controller.SetAdditionalLabels(previousCar, carF);
 

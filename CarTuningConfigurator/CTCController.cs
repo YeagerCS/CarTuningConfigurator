@@ -124,14 +124,16 @@ namespace CarTuningConfigurator
                 Orientation = Orientation.Vertical
             };
 
-            var messageLabel = new Label
+            var messageLabel = new TextBlock
             {
-                Content = massage,
+                Text = massage,
                 FontSize = fontsize,
                 FontFamily = new FontFamily(font),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                Foreground = new SolidColorBrush(Colors.White)
+                Foreground = new SolidColorBrush(Colors.White),
+                TextWrapping = TextWrapping.Wrap,
+                MaxWidth = 300
             };
 
             var button = new Button
