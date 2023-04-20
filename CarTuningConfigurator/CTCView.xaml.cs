@@ -14,23 +14,23 @@ namespace CarTuningConfigurator
     /// <summary>
     /// Interaction logic for CTCView.xaml
     /// </summary>
-    public partial class CTCView : Window
-    {
-        Car carF;
-        TuningView window = new TuningView();
-        string[] stats = new string[5];
-        CTCController controller;
-        private bool isUpdate = false;
-        private Regex regex = new Regex("^[a-zA-Z0-9_.-]+\\s[a-zA-Z0-9_.-]+(\\s[a-zA-Z0-9_.-]+)?$");
-
-
-        public CTCView()
-        {
-            InitializeComponent();
-            ResizeMode = ResizeMode.NoResize;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+    public partial class CTCView : Window                                                                                              
+    {                                                                                                                                  
+        Car carF;                                                                                                                      
+        TuningView window = new TuningView();                                                                                          
+        string[] stats = new string[5];                                                                                                
+        CTCController controller;                                                                                                      
+        private bool isUpdate = false;                                                                                                 
+        private Regex regex = new Regex("^[a-zA-Z0-9_.-]+\\s[a-zA-Z0-9_.-]+(\\s[a-zA-Z0-9_.-]+)?$");                                   
+                                                                                                                                       
+                                                                                                                                       
+        public CTCView()                                                                                                               
+        {                                                                                                                              
+            InitializeComponent();                                                                                                     
+            ResizeMode = ResizeMode.NoResize;                                                                                          
+        }                                                                                                                              
+                                                                                                                                       
+        private void Button_Click(object sender, RoutedEventArgs e)                                                                    
         {
             if (isUpdate)
             {
