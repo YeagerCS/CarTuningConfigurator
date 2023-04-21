@@ -1,0 +1,61 @@
+Impact's and prices are calculated for each item differently
+
+
+Spoiler:
+type
+name
+level
+price = level * 5000
+ImpactVelocity = level * 5
+
+
+Engine:
+name
+type
+cylinder
+level
+price = level * 40000
+ImpactVelocity = level * 25
+ImpactAcceleration = level * 0.4
+ImplactHorsePower = level * 70
+
+
+Tyres:
+name
+level
+price = level *70
+type
+ImpactBreakingforce = level * 5
+ImpactAcceleration = level * 0.1
+
+
+
+Rims:
+name
+level
+price = level * 800
+type
+color
+
+
+
+Break:
+name
+level
+price = level * 10000
+ImpactBreakingForce = level * 30
+
+
+
+Nitro:
+name
+level
+price = level * 20000
+ImpactNitro = level * 15
+
+
+Exhaust:
+name
+level
+price = level * 10000
+ImpactNitro = level * 5

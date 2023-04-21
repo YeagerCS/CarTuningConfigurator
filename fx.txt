@@ -1,0 +1,6 @@
+Spoiler -> topspeed+ pro Level + 1
+Breaks -> breaking_force++ pro Level +3
+Wheels -> breaking_force+ pro Level +2, acceleration++ pro Level +2
+Engine -> top_speed++ pro Level +3, acceleration++ pro Level +2, hp++ pro Level +3
+Nitro -> nitro++ pro Level +3
+Exhaust -> nitro+ pro Level +1

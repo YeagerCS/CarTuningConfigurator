@@ -1,0 +1,16 @@
+topSpeed (int), breakingForce (int), acceleration (int), nitro (int), hp (int), brand, model, color, price (decimal(7,2)), tintedWindows (boolean), weight (int)
+
+INSERT INTO defaultcar (topSpeed, breakingForce, acceleration, nitro, hp, brand, model, color, price, tintedWindows, weight)
+VALUES (180, 100, 7, 0, 150, 'Hyundai', 'Accent', 'White', 14999.99, 0, 1200);
+
+INSERT INTO defaultcar (topSpeed, breakingForce, acceleration, nitro, hp, brand, model, color, price, tintedWindows, weight)
+VALUES (200, 120, 6, 0, 200, 'Toyota', 'Corolla', 'Red', 18999.99, 1, 1300);
+
+INSERT INTO defaultcar (topSpeed, breakingForce, acceleration, nitro, hp, brand, model, color, price, tintedWindows, weight)
+VALUES (220, 150, 5, 0, 250, 'BMW', 'M3', 'Black', 59999.99, 1, 1600);
+
+INSERT INTO defaultcar (topSpeed, breakingForce, acceleration, nitro, hp, brand, model, color, price, tintedWindows, weight)
+VALUES (240, 180, 4, 0, 300, 'Mercedes-Benz', 'AMG GT', 'Silver', 89999.99, 1, 1800);
+
+INSERT INTO defaultcar (topSpeed, breakingForce, acceleration, nitro, hp, brand, model, color, price, tintedWindows, weight)
+VALUES (260, 200, 3, 0, 400, 'Ferrari', '458 Italia', 'Yellow', 179999.99, 1, 2000);
