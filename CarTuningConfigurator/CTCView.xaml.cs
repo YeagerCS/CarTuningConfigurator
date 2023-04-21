@@ -41,8 +41,7 @@ namespace CarTuningConfigurator
 
                     controller.UpdateDatabase(carF);
                     controller.ShowMessageWindow("Success", "Successfully Updated", fontsize: 25);
-                    MainWindow mainWindow = new MainWindow(true);
-                    mainWindow.Show();
+                    
                     this.Close();
                 }
                 else
@@ -60,8 +59,8 @@ namespace CarTuningConfigurator
                     carF.Model = lblBrandModel.Text.Split(' ').Length > 2 ? lblBrandModel.Text.Split(' ')[1] + " " + lblBrandModel.Text.Split(' ')[2] : lblBrandModel.Text.Split(' ')[1];
                     controller.SaveToDatabase(carF);
                     controller.ShowMessageWindow("Success", "Successfully Inserted", fontsize: 25);
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
+                    HomeView homeview = new HomeView();
+                    homeview.Show();
                     this.Close();
                 }
                 else
