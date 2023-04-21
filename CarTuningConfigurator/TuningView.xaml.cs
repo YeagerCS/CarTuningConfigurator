@@ -16,6 +16,7 @@ namespace CarTuningConfigurator
         TuningController controller;
         public event EventHandler<(TuningItem? item, string type)> DataChanged;
         CTCController ctcController;
+        Car carF;
 
         string current = "";
         public TuningView()
@@ -34,6 +35,7 @@ namespace CarTuningConfigurator
             TuningItems = controller.InsertContent(item);
             controller.AddToListBox(lbxSpecs, TuningItems);
             ctcController = new CTCController();
+            carF = car;
         }
 
         private void lbxSpecs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -43,7 +45,7 @@ namespace CarTuningConfigurator
             lblNitro.Content = "Nitro: ";
             lblAcceleration.Content = "Acceleration: ";
             lblHp.Content = "HP: ";
-            lblBreakingForce.Content = "Breaking force: ";
+            lblBreakingForce.Content = "Braking force: ";
 
 
             int index = lbxSpecs.SelectedIndex;
@@ -61,10 +63,16 @@ namespace CarTuningConfigurator
                     break;
                 case "Engines":
                     List<Engine> engines = TuningItems.Cast<Engine>().ToList();
+                    Car defaultCar = new CTCController().GetDefaultCarModel(carF.Image);
+                    int newTopSpeed = (carF.TopSpeed - (engines[index].ImpactVelocity + defaultCar.TopSpeed)) * -1;
+                    double newAcceleration = (carF.Acceleration - (engines[index].ImpactAcceleration + defaultCar.Acceleration)) * -1;
+                    int newHorsePower = (carF.Hp - (engines[index].ImpactHorsePower + defaultCar.Hp)) * -1;
+
                     lblPrice.Content += engines[index].Price + "$";
-                    lblAcceleration.Content += "-" + engines[index].ImpactAcceleration;
-                    lblHp.Content += "" + engines[index].ImpactHorsePower;
-                    lblTopSpeed.Content += "+" + engines[index].ImpactVelocity;
+                    lblAcceleration.Content += newAcceleration > 0 ? "-" + Math.Round(newAcceleration, 2) : "+" + Math.Round(Math.Abs(newAcceleration), 2);
+                    lblHp.Content += newHorsePower > 0 ? "+" + newHorsePower : newHorsePower + "";
+                    lblTopSpeed.Content += newTopSpeed > 0 ? "+" + newTopSpeed : newTopSpeed + "";
+
                     break;
                 case "Rims":
                     List<Rims> Rims = TuningItems.Cast<Rims>().ToList();

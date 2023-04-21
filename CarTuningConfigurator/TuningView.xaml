@@ -17,7 +17,7 @@
             <Label Content="HP: " HorizontalAlignment="Left" Height="30" Margin="390,231,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblHp"/>
             <Label Content="Nitro: " HorizontalAlignment="Left" Height="30" Margin="390,201,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblNitro"/>
             <Label Content="Acceleration: " HorizontalAlignment="Left" Height="30" Margin="390,171,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblAcceleration"/>
-            <Label Content="Breaking force: " HorizontalAlignment="Left" Height="36" Margin="390,141,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblBreakingForce"/>
+            <Label Content="Braking force: " HorizontalAlignment="Left" Height="36" Margin="390,141,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" x:Name="lblBreakingForce"/>
             <Label Content="Topspeed: " HorizontalAlignment="Left" Height="39" Margin="390,111,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Foreground="#666666" RenderTransformOrigin="0.522,0.101" x:Name="lblTopSpeed"/>
 
         </Grid>

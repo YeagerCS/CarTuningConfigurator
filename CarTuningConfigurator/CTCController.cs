@@ -56,7 +56,7 @@ namespace CarTuningConfigurator
         public object[] CalculatePriceAndStats(Car car)
         {
             object[] objs = new object[2];
-            Car defaultCar = GetDefaultCarModel(car.Brand);
+            Car defaultCar = GetDefaultCarModel(car.Image);
             double TotalPriceCalc = 0;
             if (car.Spoiler != null)
             {
@@ -76,7 +76,7 @@ namespace CarTuningConfigurator
             {
                 car.TopSpeed = car.Spoiler != null ? defaultCar.TopSpeed + car.Engine.ImpactVelocity + car.Spoiler.ImpactVelocity : defaultCar.TopSpeed + car.Engine.ImpactVelocity;
                 car.Acceleration = defaultCar.Acceleration - car.Engine.ImpactAcceleration;
-                car.Hp = car.Engine.ImpactHorsePower;
+                car.Hp = defaultCar.Hp + car.Engine.ImpactHorsePower;
                 TotalPriceCalc += car.Engine.Price;
             }
             if (car.Break != null)
@@ -103,7 +103,7 @@ namespace CarTuningConfigurator
             return objs;
         }
 
-        public void ShowMessageWindow(string title, string massage, string buttonText = "Ok", int fontsize = 35, string font = "Trebuchet MS", string backgroundColor = "Lime")
+        public void ShowMessageWindow(string title, string massage, string buttonText = "Ok", int fontsize = 35, string font = "Trebuchet MS", string backgroundColor = "Lime", string color = "White")
         {
 
             var dialog = new Window
@@ -131,7 +131,7 @@ namespace CarTuningConfigurator
                 FontFamily = new FontFamily(font),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                Foreground = new SolidColorBrush(Colors.White),
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color)),
                 TextWrapping = TextWrapping.Wrap,
                 MaxWidth = 300
             };
@@ -209,9 +209,9 @@ namespace CarTuningConfigurator
             model.UpdateDatabase(car);
         }
 
-        public Car GetDefaultCarModel(string brand)
+        public Car GetDefaultCarModel(string path)
         {
-            return model.GetDefaultCarModel(brand);
+            return model.GetDefaultCarModel(path);
         }
 
         //Add
