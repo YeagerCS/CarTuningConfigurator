@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CarTuningConfigurator"
         mc:Ignorable="d"
         
-        Title="Garage" Height="430" Width="800" Closed="Window_Closed" MinHeight="440" MinWidth="810">
+        Title="Garage" Height="430" Width="800" Closed="Window_Closed" MinHeight="440" MinWidth="810" Loaded="Window_Loaded">
 
     <Window.Resources>
         <Storyboard x:Key="ImageTransitionin">

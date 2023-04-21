@@ -22,7 +22,7 @@ namespace CarTuningConfigurator
 
         CTCModel model = new CTCModel();
 
-        
+
         public HomeView()
         {
             InitializeComponent();
@@ -38,6 +38,7 @@ namespace CarTuningConfigurator
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow(true);
+            
             mainWindow.Show();
             this.Close();
         }
