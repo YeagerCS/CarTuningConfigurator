@@ -78,6 +78,7 @@ namespace CarTuningConfigurator
             InitializeComponent();
             controller = new CTCController();
             carF = car;
+            carF.BreakingForce = carF.CalculateBrakingForce();
             if (carF.Hp == 0)
             {
                 carF.Hp = controller.GetDefaultCarModel(carF.Brand).Hp;
@@ -96,8 +97,9 @@ namespace CarTuningConfigurator
             {
                 lblPrice.Content = $"Value: {Math.Round(carF.Price, 2)}$";
             }
+            controller.UpdateDatabase(carF);
 
-            
+
             InitializeColor();
             FillListBox(stats);
         }
@@ -257,7 +259,7 @@ namespace CarTuningConfigurator
 
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(" Topspeed in km/h\n Breaking force in Power\n Acceleration in Time for 0-100km/h\n Nitro in Power\n HP in Horsepower", "Stat Infos");
+           controller.ShowMessageWindow("Stat Infos", " Topspeed in km/h\n Breaking force in Power\n Acceleration in Time for 0-100km/h\n Nitro in Power\n HP in Horsepower", fontsize: 16, backgroundColor: "White", color: "Black");
         }
 
         private void InitializeColor()

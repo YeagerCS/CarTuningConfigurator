@@ -127,14 +127,14 @@ namespace CarTuningConfigurator
         }
 
 
-        public Car GetDefaultCarModel(string brand)
+        public Car GetDefaultCarModel(string path)
         {
 
             List<Car> defCars = new List<Car>();
             using(var context = new DBContext())
             {
                 defCars = context.Cars.Include("Break").Include("Exhaust").Include("Spoiler").Include("Tyres").Include("Rims").Include("Nitro").Include("Engine")
-                    .Where(x => x.isDefaultCar == 1).Where(y => y.Brand == brand).ToList(); 
+                    .Where(x => x.isDefaultCar == 1).Where(y => y.Image == path).ToList(); 
             }
 
             return defCars[0];   
