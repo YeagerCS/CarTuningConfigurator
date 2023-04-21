@@ -41,7 +41,8 @@ namespace CarTuningConfigurator
 
                     controller.UpdateDatabase(carF);
                     controller.ShowMessageWindow("Success", "Successfully Updated", fontsize: 25);
-                    
+                    HomeView homeview = new HomeView();
+                    homeview.Show();
                     this.Close();
                 }
                 else
