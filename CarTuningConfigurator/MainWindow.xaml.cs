@@ -30,6 +30,8 @@ namespace CarTuningConfigurator
 
         public MainWindow(bool configure)
         {
+            InitializeComponent();
+
             model = new CTCModel(true);
 
             if (model.Cars.Count > 0)
@@ -73,7 +75,6 @@ namespace CarTuningConfigurator
                 isLoaded = false;
             }
             
-            InitializeComponent();
 
         }
 

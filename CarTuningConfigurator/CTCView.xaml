@@ -27,12 +27,12 @@
             <Button Content="Back to Home" HorizontalAlignment="Left" Height="35" Margin="35,389,0,0" VerticalAlignment="Top" Width="128" Click="garageButton_Click"/>
 
             <Label Content="🛈" HorizontalAlignment="Left" Height="43" Margin="216,35,0,0" VerticalAlignment="Top" Width="33" FontSize="24" MouseDown="Label_MouseDown"/>
-            <Label Content="" HorizontalAlignment="Left" Margin="288,189,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblTyres"/>
-            <Label Content="" HorizontalAlignment="Left" Margin="293,68,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblExhaust"/>
+            <Label Content="" HorizontalAlignment="Left" Margin="278,189,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblTyres"/>
+            <Label Content="" HorizontalAlignment="Left" Margin="283,68,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblExhaust"/>
             <Label Content="" HorizontalAlignment="Left" Margin="432,28,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblSpoiler"/>
             <Label Content="" HorizontalAlignment="Left" Margin="767,180,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblBreak"/>
             <Label Content="" HorizontalAlignment="Left" Margin="740,285,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblNitro"/>
-            <Label Content="" HorizontalAlignment="Left" Margin="422,268,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblRims"/>
+            <Label Content="" HorizontalAlignment="Left" Margin="402,268,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblRims"/>
             <Label Content="" HorizontalAlignment="Left" Margin="570,315,0,0" VerticalAlignment="Top" FontFamily="Sitka Small Semibold" FontSize="14" x:Name="lblEngine"/>
             <Label Content="" HorizontalAlignment="Left" Margin="249,85,0,0" VerticalAlignment="Top" x:Name="lblTopspeed" BorderBrush="Black" BorderThickness="1"/>
             <Label Content="" HorizontalAlignment="Left" Margin="249,112,0,0" VerticalAlignment="Top" x:Name="lblBreakingForce" BorderBrush="Black" BorderThickness="1"/>
