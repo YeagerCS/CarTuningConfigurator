@@ -47,7 +47,7 @@ namespace CarTuningConfigurator
 
         public DBContext()
         {
-            DataBaseConfiguration = new IniFile("config.ini");
+            DataBaseConfiguration = new IniFile("C:\\Users\\Lejs\\source\\repos\\YeagerCS\\CarTuningConfigurator\\CarTuningConfigurator\\bin\\Debug\\net6.0-windows\\config.ini");
             try
             {
                 IPAddress = DataBaseConfiguration.ReadSection("IP_Address");

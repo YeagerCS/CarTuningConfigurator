@@ -49,11 +49,11 @@ namespace CarTuningConfigurator
         public string Image { get; set; }
         public int isDefaultCar { get; set; }
 
-        public Car(int id, int topSpeed, double acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, Spoiler? spoiler, Rims? rims, Nitro? Nitro, Engine? engine, Break? @break, Exhaust? exhaust, Tyres? tyres, string image)
+        public Car(int id, int breakingForce, int topSpeed, double acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, Spoiler? spoiler, Rims? rims, Nitro? Nitro, Engine? engine, Break? @break, Exhaust? exhaust, Tyres? tyres, string image)
         {
             Id = id;
             TopSpeed = topSpeed;
-            BreakingForce = CalculateBrakingForce();
+            BreakingForce = breakingForce;
             Acceleration = acceleration;
             this.Nitro = Nitro; 
             Hp = hp;
@@ -82,12 +82,12 @@ namespace CarTuningConfigurator
 
         }
 
-        public Car(int id, int topSpeed, double acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, string image, double price)
+        public Car(int id, int breakingForce, int topSpeed, double acceleration, int nitroPower, int hp, string brand, string model, string color, bool tintedWindows, int weight, string image, double price)
         {
             Id = id;
             TopSpeed = topSpeed;
-            BreakingForce = CalculateBrakingForce();
             Acceleration = acceleration;
+            BreakingForce = breakingForce;
             this.nitroPower = nitroPower;
             Hp = hp;
             Brand = brand;
@@ -107,20 +107,6 @@ namespace CarTuningConfigurator
         public object Clone()
         {
             return this.MemberwiseClone();
-        }
-
-        public int CalculateBrakingForce()
-        {
-            return Convert.ToInt32(Weight * Math.Round(CalculateAcceleration(TopSpeed), 2));
-        }
-
-        public double CalculateAcceleration(int finalVelocityKPH)
-        {
-            int t = 5;
-            double averageVelocity = finalVelocityKPH / 2;
-            double averageVelocityMS = averageVelocity / 3.6;
-
-            return averageVelocityMS / t;
         }
     }
 }

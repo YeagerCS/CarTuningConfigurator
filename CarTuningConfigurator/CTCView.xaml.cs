@@ -106,7 +106,7 @@ namespace CarTuningConfigurator
         public void DefineStats()
         {
             stats[0] = $"Topspeed: {carF.TopSpeed} km/h";
-            stats[1] = $"Braking force: {carF.BreakingForce} N";
+            stats[1] = $"Average Braking force: {carF.BreakingForce} N";
             stats[2] = $"Acceleration: {Math.Round(carF.Acceleration, 2)}s";
             stats[3] = $"Nitro: {carF.nitroPower}";
             stats[4] = $"HP: {carF.Hp}";

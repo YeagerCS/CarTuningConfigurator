@@ -12,8 +12,8 @@ namespace CarTuningConfiguratorTest
         [TestMethod]
         public void TestAdditionalLabelCalculation()
         {
-            const string ExpectedTopspeed = "+220";
-            const string ExpectedBreakingForce = "+210";
+            const string ExpectedTopspeed = "+210";
+            const string ExpectedBreakingForce = "+220";
             const string ExpectedAcceleration = "-3";
 
             Car initialCar = new Car(1, 280, 120, 5, 40, 700, "Esse", "Eater", "Red", false, 1400, "/images/car1.jpg", 17999.99);
@@ -34,9 +34,9 @@ namespace CarTuningConfiguratorTest
             Break setBreak = controller.model.Breaks[1];
             Engine setEngine = controller.model.Engines[1];
             Exhaust setExhaust = controller.model.Exhausts[1];
-            Car car = new Car(9, 280, 120, 5, 40, 700, "Bugatti", "Veyron", "Red", false, 1400, "/images/car1.jpg", 17999.99);
+            Car car = new Car(9, 280, 120, 5, 40, 700, "Bugatti", "Veyron", "Red", false, 1400, "images/car2.jpg", 17999.99);
 
-            double ExpectedPrice = setSpoiler.Price + setBreak.Price + setEngine.Price + setExhaust.Price + controller.GetDefaultCarModel(car.Brand).Price;
+            double ExpectedPrice = setSpoiler.Price + setBreak.Price + setEngine.Price + setExhaust.Price + controller.GetDefaultCarModel("images/car2.jpg").Price;
 
 
             car.Spoiler = setSpoiler;
