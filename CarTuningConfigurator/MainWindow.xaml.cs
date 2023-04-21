@@ -26,42 +26,55 @@ namespace CarTuningConfigurator
         private BrushConverter converter = new BrushConverter();
         bool isConfig = false;
         int index = 0;
+        bool isLoaded = false;
 
         public MainWindow(bool configure)
         {
             model = new CTCModel(true);
-            isConfig = configure;
+
+            if (model.Cars.Count > 0)
+            {
+                isLoaded = true;
+                isConfig = true;
+                Uri uri = new Uri(model.Cars[index].Image, UriKind.Relative);
+                BitmapImage imageBItmap = new BitmapImage(uri);
+
+                selectedCarImage.Source = imageBItmap;
+
+                // Update the label and triangle visibility
+                if (index == 0)
+                {
+                    triangleLeft.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    triangleLeft.Visibility = Visibility.Visible;
+                }
+
+                if (index == model.Cars.Count - 1)
+                {
+                    triangleRight.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    triangleRight.Visibility = Visibility.Visible;
+                }
+
+                lblBrandModel.Content = model.Cars[index].Brand + " " + model.Cars[index].Model;
+                lblPrice_Copy.Content = "Value: ";
+                lblPrice.Content = model.Cars[index].Price + "$";
+                InitializeStatistics();
+
+                plyColor.Fill = (Brush)converter.ConvertFromString(model.Cars[index].Color);
+            }
+            else
+            {
+                new CTCController().ShowMessageWindow("No Tuned Cars", "There currently are no tuned cars, go tune some cars", fontsize: 21, backgroundColor: "Orange");
+                isLoaded = false;
+            }
+            
             InitializeComponent();
-            Uri uri = new Uri(model.Cars[index].Image, UriKind.Relative);
-            BitmapImage imageBItmap = new BitmapImage(uri);
 
-            selectedCarImage.Source = imageBItmap;
-
-            // Update the label and triangle visibility
-            if (index == 0)
-            {
-                triangleLeft.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                triangleLeft.Visibility = Visibility.Visible;
-            }
-
-            if (index == model.Cars.Count - 1)
-            {
-                triangleRight.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                triangleRight.Visibility = Visibility.Visible;
-            }
-
-            lblBrandModel.Content = model.Cars[index].Brand + " " + model.Cars[index].Model;
-            lblPrice_Copy.Content = "Value: ";
-            lblPrice.Content = model.Cars[index].Price + "$";
-            InitializeStatistics();
-
-            plyColor.Fill = (Brush)converter.ConvertFromString(model.Cars[index].Color);
         }
 
         public void InitializeStatistics()
@@ -87,7 +100,7 @@ namespace CarTuningConfigurator
             InitializeComponent();
             Uri uri = new Uri(model.Cars[index].Image, UriKind.Relative);
             BitmapImage imageBItmap = new BitmapImage(uri);
-
+            isLoaded = true;
             selectedCarImage.Source = imageBItmap;
 
             // Update the label and triangle visibility
@@ -180,14 +193,19 @@ namespace CarTuningConfigurator
 
         private void selectedCarImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CTCView window = new CTCView(model.Cars[index].Image, model.Cars[index], model.Cars[index].Brand, model.Cars[index].Model);
+            CTCView window;
+            if (isConfig)
+            {
+                window = new CTCView(model.Cars[index].Image, model.Cars[index], model.Cars[index].Brand, model.Cars[index].Model, true);
+            }
+            else
+            {
+                window = new CTCView(model.Cars[index].Image, model.Cars[index], model.Cars[index].Brand, model.Cars[index].Model, false);
+            }
             window.Show();
             var transitionStoryboard = (Storyboard)FindResource("windowTransition");
             transitionStoryboard.Begin(window);
             this.Close();
-            
-            
-
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -200,6 +218,16 @@ namespace CarTuningConfigurator
             HomeView homeView = new HomeView();
             homeView.Show();
             this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!isLoaded)
+            {
+                HomeView homeView = new HomeView();
+                homeView.Show();
+                this.Close();
+            }
         }
     }
 }

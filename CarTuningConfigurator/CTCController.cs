@@ -103,7 +103,7 @@ namespace CarTuningConfigurator
             return objs;
         }
 
-        public void ShowMessageWindow(string title, string massage, string buttonText = "Ok", int fontsize = 35, string font = "Trebuchet MS", string backgroundColor = "Lime", string color = "White")
+        public void ShowMessageWindow(string title, string massage, string buttonText = "Ok", int fontsize = 35, string font = "Trebuchet MS", string backgroundColor = "Lime", string color = "White", int height = 35)
         {
 
             var dialog = new Window
@@ -140,7 +140,7 @@ namespace CarTuningConfigurator
             {
                 Content = buttonText,
                 Width = 80,
-                Height = 35,
+                Height = height,
                 Margin = new Thickness(0, 10, 0, 0),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Bottom
@@ -156,9 +156,8 @@ namespace CarTuningConfigurator
             dialog.ShowDialog();
         }
 
-        public bool ModifyLabels(ref Label[] labels, Car car)
+        public void ModifyLabels(ref Label[] labels, Car car)
         {
-            bool isUpdate = false;
             tuningItems = new List<TuningItem?>
             {
                 car.Rims,
@@ -174,7 +173,6 @@ namespace CarTuningConfigurator
             {
                 if (item != null)
                 {
-                    isUpdate = true;
                     labels[i].Content = item.Name;
                 }
                 else
@@ -184,7 +182,6 @@ namespace CarTuningConfigurator
                 i++;
             }
 
-            return isUpdate;
         }
 
         public string[] SetAdditionalLabels(Car initialCar, Car finalCar)

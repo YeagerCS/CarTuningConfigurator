@@ -21,7 +21,7 @@ namespace CarTuningConfigurator
         string[] stats = new string[5];                                                                                                
         CTCController controller;                                                                                                      
         private bool isUpdate = false;                                                                                                 
-        private Regex regex = new Regex("^[a-zA-Z0-9_.-]+\\s[a-zA-Z0-9_.-]+(\\s[a-zA-Z0-9_.-]+)?$");                                   
+        private Regex regex = new Regex("^[a-zA-Z0-9_.-äöü]+\\s[a-zA-Z0-9_.-äöü]+(\\s[a-zA-Z0-9_.-äöü]+)?$");                                   
                                                                                                                                        
                                                                                                                                        
         public CTCView()                                                                                                               
@@ -73,12 +73,11 @@ namespace CarTuningConfigurator
         }
 
 
-        public CTCView(string path, Car car, string carBrand, string carModel)
+        public CTCView(string path, Car car, string carBrand, string carModel, bool updating)
         {
             InitializeComponent();
             controller = new CTCController();
             carF = car;
-            carF.BreakingForce = carF.CalculateBrakingForce();
             if (carF.Hp == 0)
             {
                 carF.Hp = controller.GetDefaultCarModel(carF.Brand).Hp;
@@ -89,15 +88,15 @@ namespace CarTuningConfigurator
             lblBrandModel.Text = carBrand + " " + carModel;
             Label[] labels = { lblRims, lblSpoiler, lblNitro, lblEngine, lblBreak, lblExhaust, lblTyres };
 
-            isUpdate = controller.ModifyLabels(ref labels, carF);
+            controller.ModifyLabels(ref labels, carF);
             DefineStats();
+            isUpdate = updating;
 
             lblPrice.Content += $"{Math.Round(carF.Price, 2)}$";
             if (isUpdate)
             {
                 lblPrice.Content = $"Value: {Math.Round(carF.Price, 2)}$";
             }
-            controller.UpdateDatabase(carF);
 
 
             InitializeColor();
@@ -107,7 +106,7 @@ namespace CarTuningConfigurator
         public void DefineStats()
         {
             stats[0] = $"Topspeed: {carF.TopSpeed} km/h";
-            stats[1] = $"Braking force: {carF.BreakingForce}";
+            stats[1] = $"Braking force: {carF.BreakingForce} N";
             stats[2] = $"Acceleration: {Math.Round(carF.Acceleration, 2)}s";
             stats[3] = $"Nitro: {carF.nitroPower}";
             stats[4] = $"HP: {carF.Hp}";
@@ -259,7 +258,7 @@ namespace CarTuningConfigurator
 
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
-           controller.ShowMessageWindow("Stat Infos", " Topspeed in km/h\n Breaking force in Power\n Acceleration in Time for 0-100km/h\n Nitro in Power\n HP in Horsepower", fontsize: 16, backgroundColor: "White", color: "Black");
+           controller.ShowMessageWindow("Stat Infos", " Topspeed in km/h\n Average Breaking force in N for 5s\n Acceleration in Time for 0-100km/h\n Nitro in Power\n HP in Horsepower", fontsize: 16, backgroundColor: "White", color: "Black");
         }
 
         private void InitializeColor()

@@ -63,7 +63,7 @@ namespace CarTuningConfigurator
                     break;
                 case "Engines":
                     List<Engine> engines = TuningItems.Cast<Engine>().ToList();
-                    Car defaultCar = new CTCController().GetDefaultCarModel(carF.Image);
+                    Car defaultCar = ctcController.GetDefaultCarModel(carF.Image);
                     int newTopSpeed = (carF.TopSpeed - (engines[index].ImpactVelocity + defaultCar.TopSpeed)) * -1;
                     double newAcceleration = (carF.Acceleration - (engines[index].ImpactAcceleration + defaultCar.Acceleration)) * -1;
                     int newHorsePower = (carF.Hp - (engines[index].ImpactHorsePower + defaultCar.Hp)) * -1;
@@ -101,35 +101,8 @@ namespace CarTuningConfigurator
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int index = lbxSpecs.SelectedIndex;
-            if(index != -1)
+            if (index != -1)
             {
-                switch (current)
-                {
-                    case "Breaks":
-                        List<Break> breaks = TuningItems.Cast<Break>().ToList();
-                        break;
-                    case "Nitros":
-                        List<Nitro> nitros = TuningItems.Cast<Nitro>().ToList();
-                        break;
-                    case "Engines":
-                        List<Engine> engines = TuningItems.Cast<Engine>().ToList();
-                        break;
-                    case "Tyres":
-                        List<Tyres> tyres = TuningItems.Cast<Tyres>().ToList();
-                        break;
-                    case "Exhausts":
-                        List<Exhaust> exhausts = TuningItems.Cast<Exhaust>().ToList();
-                        break;
-                    case "Spoilers":
-                        List<Spoiler> spoiler = TuningItems.Cast<Spoiler>().ToList();
-                        break;
-                    case "Rims":
-                        break;
-                    default:
-                        throw new ArgumentException(current + " is not a valid argument");
-
-                    
-                }
                 DataChanged?.Invoke(this, (TuningItems[index], current));
             }
             else
@@ -137,6 +110,43 @@ namespace CarTuningConfigurator
                 ctcController.ShowMessageWindow("Error", "Please choose an item", fontsize: 22, backgroundColor: "OrangeRed");
             }
         }
+
+        private void lblInfo_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if(lbxSpecs.SelectedIndex != -1)
+            {
+                TuningItem selectedItem = TuningItems[lbxSpecs.SelectedIndex];
+                switch (current)
+                {
+                    case "Breaks":
+                        ctcController.ShowMessageWindow(current, $" Name: {selectedItem.Name}\n Level: {selectedItem.Level}", fontsize: 20, backgroundColor: "White", color: "Black");
+                        break;
+                    case "Nitros":
+                        ctcController.ShowMessageWindow(current, $" Name: {selectedItem.Name}\n Level: {selectedItem.Level}", fontsize: 20, backgroundColor: "White", color: "Black");
+                        break;
+                    case "Engines":
+                        Engine selectedEngine = (Engine)selectedItem;
+                        ctcController.ShowMessageWindow(current, $" Name: {selectedEngine.Name}\n Level: {selectedEngine.Level}\n Type(Fuel): {selectedEngine.Type}\n Cylinder: {selectedEngine.Cylinder}", fontsize: 20, backgroundColor: "White", color: "Black");
+                        break;
+                    case "Tyres":
+                        Tyres selectedTyres = (Tyres)selectedItem;
+                        ctcController.ShowMessageWindow(current, $" Name: {selectedTyres.Name}\n Level: {selectedTyres.Level}\n Type: {selectedTyres.Type}", fontsize: 20, backgroundColor: "White", color: "Black");
+                        break;
+                    case "Exhausts":
+                        ctcController.ShowMessageWindow(current, $" Name: {selectedItem.Name}\n Level: {selectedItem.Level}", fontsize: 20, backgroundColor: "White", color: "Black");
+                        break;
+                    case "Spoilers":
+                        Spoiler selectedSpoiler = (Spoiler)selectedItem;
+                        ctcController.ShowMessageWindow(current, $" Name: {selectedSpoiler.Name}\n Level: {selectedSpoiler.Level}\n Type: {selectedSpoiler.Type}", fontsize: 20, backgroundColor: "White", color: "Black");
+                        break;
+                    case "Rims":
+                        Rims selectedRims = (Rims)selectedItem;
+                        ctcController.ShowMessageWindow(current, $" Name: {selectedRims.Name}\n Level: {selectedRims.Level}\n Type: {selectedRims.Type}\n Color: {selectedRims.Color}", fontsize: 20, backgroundColor: "White", color: "Black");
+                        break;
+                    default:
+                        throw new ArgumentException(current + " is not a valid argument");
+                }
+            }
+        }
     }
-    
 }
